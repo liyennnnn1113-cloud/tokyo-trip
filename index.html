@@ -9,47 +9,38 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
         :root {
-            --bg-page: #f7f7f7;     /* 你指定的極簡淡灰底 */
-            --primary-blue: #364c84; /* 深海藍 */
-            --sky-blue: #95b1ee;    
-            --light-green: #e7f1a8; 
+            --bg-page: #f7f7f7;
+            --primary-blue: #364c84;
+            --sky-blue: #95b1ee;
+            --light-green: #e7f1a8;
             --text-grey: #707070;
-            --light-grey: #f1f1f1;
         }
         body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg-page); color: var(--primary-blue); margin: 0; padding-bottom: 120px; overflow-x: hidden; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        /* 4% 透明度的極致柔和陰影 */
-        .soft-shadow { box-shadow: 0 10px 30px rgba(54, 76, 132, 0.04), 0 4px 10px rgba(0, 0, 0, 0.02); }
-        
-        .glass-card { background: white; border-radius: 28px; padding: 24px; border: 1px solid rgba(255,255,255,0.8); }
+        .soft-shadow { box-shadow: 0 10px 30px rgba(54, 76, 132, 0.04); }
+        .glass-card { background: white; border-radius: 28px; padding: 24px; }
         .itinerary-card { background: white; border-radius: 28px; padding: 24px; min-height: 110px; display: flex; flex-direction: column; justify-content: space-between; }
-        
-        .date-card { width: 66px; height: 88px; border-radius: 20px; transition: 0.3s; background: white; flex-shrink: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.5; margin: 0 6px; border: 1px solid rgba(0,0,0,0.01); }
-        .date-card.active { background-color: var(--light-green) !important; opacity: 1; box-shadow: 0 8px 15px rgba(231, 241, 168, 0.4); transform: scale(1.05); border: none; }
-        
-        .nav-btn { color: #CCCCCC; text-align: center; font-size: 11px; flex: 1; border: none; background: none; outline: none; transition: 0.3s; }
+        .date-card { width: 66px; height: 88px; border-radius: 20px; transition: 0.3s; background: white; flex-shrink: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.5; margin: 0 6px; }
+        .date-card.active { background-color: var(--light-green) !important; opacity: 1; box-shadow: 0 8px 15px rgba(231, 241, 168, 0.4); transform: scale(1.05); }
+        .nav-btn { color: #CCCCCC; text-align: center; font-size: 11px; flex: 1; border: none; background: none; outline: none; }
         .nav-btn.active { color: var(--primary-blue) !important; font-weight: bold; }
-        
-        .category-tag { font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 8px; background: var(--light-grey); color: var(--primary-blue); }
+        .category-tag { font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 8px; background: #f1f1f1; color: var(--primary-blue); }
         .strikethrough { text-decoration: line-through; opacity: 0.3; }
-        .input-group { background: var(--light-grey); border-radius: 14px; padding: 14px; margin-bottom: 10px; width: 100%; border: none; font-size: 14px; outline: none; }
+        .input-group { background: #f1f1f1; border-radius: 14px; padding: 14px; margin-bottom: 10px; width: 100%; border: none; font-size: 14px; outline: none; }
         .hidden { display: none !important; }
-        .fade-in { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="max-w-md mx-auto">
 
     <header class="p-8 pb-4 flex justify-between items-center">
         <div>
-            <h1 id="pageTitle" class="text-3xl font-bold tracking-tight text-[var(--primary-blue)]">總覽</h1>
-            <p id="pageSubTitle" class="text-sm text-[var(--text-grey)]">V's Tokyo Adventure</p>
+            <h1 id="pageTitle" class="text-3xl font-bold tracking-tight">總覽</h1>
+            <p id="pageSubTitle" class="text-sm text-[var(--text-grey)]">Tokyo Trip 2026</p>
         </div>
-        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center soft-shadow font-bold text-[var(--primary-blue)]">V</div>
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center soft-shadow font-bold">V</div>
     </header>
 
-    <main id="mainContent" class="px-6 fade-in">
+    <main id="mainContent" class="px-6">
         <div id="dashSection">
             <div class="flex flex-col gap-4">
                 <div class="glass-card soft-shadow flex justify-between items-center">
@@ -94,14 +85,14 @@
         <div id="expenseSection" class="hidden">
             <div class="glass-card soft-shadow p-12 text-center mb-8">
                 <p class="text-xs opacity-40 uppercase tracking-widest mb-2 font-bold">全程預算總計</p>
-                <p id="totalCostDisplay" class="text-4xl font-bold text-[var(--primary-blue)]">NT$ 0</p>
+                <p id="totalCostDisplay" class="text-4xl font-bold">NT$ 0</p>
             </div>
             <div id="expenseList" class="flex flex-col gap-4"></div>
         </div>
     </main>
 
     <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl h-24 flex justify-around items-center border-t border-gray-100 px-8 z-40">
-        <button onclick="switchTab('dash')" class="nav-btn active" id="btn-das"><i class="fas fa-th-large text-xl mb-1"></i><br>總覽</button>
+        <button onclick="switchTab('dash')" class="nav-btn active" id="btn-dash"><i class="fas fa-th-large text-xl mb-1"></i><br>總覽</button>
         <button onclick="switchTab('itinerary')" class="nav-btn" id="btn-iti"><i class="fas fa-calendar-alt text-xl mb-1"></i><br>行程</button>
         <button onclick="switchTab('expense')" class="nav-btn" id="btn-exp"><i class="fas fa-wallet text-xl mb-1"></i><br>支出</button>
     </nav>
@@ -121,13 +112,13 @@
             <h3 class="text-lg font-bold mb-6 text-center">行程編輯</h3>
             <input type="hidden" id="editIdx">
             <select id="inCat" class="input-group"><option>🚗 移動</option><option>🧁 吃喝</option><option>🛍️ 購物</option><option>🏖️ 景點</option><option>🏠 住宿</option></select>
-            <input id="inLoc" placeholder="地點名稱" class="input-group">
+            <input id="inLoc" placeholder="地點" class="input-group">
             <input id="inTime" placeholder="時間" class="input-group">
             <input id="inMap" placeholder="Google Map 連結" class="input-group">
             <textarea id="inDesc" placeholder="備註" class="input-group" rows="3"></textarea>
             <div class="flex gap-3"><input id="inJPY" type="number" oninput="calcTWD()" class="input-group flex-1" placeholder="¥ JPY"><input id="inTWD" type="number" class="input-group flex-1" placeholder="$ TWD"></div>
             <button onclick="savePlan()" class="w-full py-5 rounded-2xl bg-[var(--primary-blue)] text-white font-bold mt-4 shadow-lg">儲存變更</button>
-            <button onclick="closePlanModal()" class="w-full py-3 mt-2 text-[var(--text-grey)] text-xs text-center">取消</button>
+            <button onclick="closePlanModal()" class="w-full py-3 mt-2 text-gray-400 text-xs text-center">取消</button>
         </div>
     </div>
 
@@ -136,129 +127,60 @@
             const rate = 0.21;
             let currentDayIdx = 1;
             const dates = [{d:'21',w:'THU',full:'05/21 Thu'},{d:'22',w:'FRI',full:'05/22 Fri'},{d:'23',w:'SAT',full:'05/23 Sat'},{d:'24',w:'SUN',full:'05/24 Sun'},{d:'25',w:'MON',full:'05/25 Mon'},{d:'26',w:'TUE',full:'05/26 Tue'},{d:'27',w:'WED',full:'05/27 Wed'}];
-            
-            let packingData = {
-                "行前作業": [{t:"訂機票",d:true},{t:"訂飯店",d:false},{t:"旅遊保險",d:false}],
-                "隨身物品": [{t:"護照/身分證",d:false},{t:"信用卡/錢",d:false},{t:"SIM卡",d:false},{t:"保溫瓶/口紅",d:false}],
-                "清潔美妝": [{t:"化妝包/乳液",d:false},{t:"洗面乳/卸妝",d:false},{t:"隱眼/眼藥水",d:false},{t:"衛生棉/護手霜",d:false}],
-                "生活用品": [{t:"換洗衣物",d:false},{t:"內褲/襪子",d:false},{t:"帽子/口罩/浴巾",d:false}],
-                "電器相關": [{t:"行動電源",d:false},{t:"充電器組",d:false},{t:"相機/電池",d:false}]
-            };
-
-            let plans = {
-                0: [{cat:'🚗 移動',time:'11:00',loc:'桃園停車🔜機場',desc:'',map:'',jpy:0,twd:0}],
-                1: [
-                    {cat:'🚗 移動',time:'02:30',loc:'桃園🔜成田 (MM620)',desc:'桃園 T1',map:'',jpy:0,twd:9980},
-                    {cat:'🚗 移動',time:'07:00',loc:'Access 特急',desc:'往西馬込或羽田直達\n1. 認準 1 號月台\n2. 避開上野',map:'',jpy:1310,twd:275},
-                    {cat:'🏖️ 景點',time:'09:00',loc:'淺草寺 雷門',desc:'寄放行李 9:00-17:00',map:'https://maps.google.com/?q=Asakusa+Temple'},
-                    {cat:'🧁 吃喝',time:'10:00',loc:'Asakusa Unana',desc:'鰻魚飯糰',map:'https://maps.google.com/?q=Asakusa+Unana'},
-                    {cat:'🏖️ 景點',time:'11:00',loc:'Asakusa ROX Spa',desc:'溫泉泡澡休息',map:'',jpy:2750,twd:578},
-                    {cat:'🏠 住宿',time:'--',loc:'淺草住宿',desc:'5/22-24',map:'',jpy:0,twd:3300}
-                ],
-                2: [
-                    {cat:'🏖️ 景點',time:'14:30',loc:'妙義神社',desc:'',map:'https://maps.google.com/?q=Myogi+Shrine'},
-                    {cat:'🏖️ 景點',time:'--',loc:'吉伊卡哇樂園 / 豪德寺',desc:'',map:''},
-                    {cat:'🧁 吃喝',time:'--',loc:'銀座 篝 拉麵',desc:'雞白湯',map:'',jpy:1500,twd:315}
-                ],
-                3: [
-                    {cat:'🚗 移動',time:'10:00',loc:'新宿寄行李',desc:'安心之宿 新宿站前店',map:'https://maps.google.com/?q=Ansin+Oyado+Shinjuku'},
-                    {cat:'🏠 住宿',time:'--',loc:'箱根住宿',desc:'',map:'',jpy:0,twd:3684}
-                ],
-                4: [
-                    {cat:'🚗 移動',time:'18:00',loc:'箱根湯本🔜新宿',desc:'拿行李',map:'',jpy:2400,twd:504},
-                    {cat:'🏠 住宿',time:'--',loc:'新宿由緣溫泉',desc:'入住旅館',map:'https://maps.google.com/?q=Onsen+Ryokan+Yuen+Shinjuku'}
-                ],
-                5: [
-                    {cat:'🧁 吃喝',time:'--',loc:'Chiikawa Bakery',desc:'Klook 預約',map:'',jpy:1300,twd:275},
-                    {cat:'🚗 移動',time:'22:10',loc:'成田🔜桃園 (MM627)',desc:'回程航班',map:'',jpy:0,twd:0}
-                ]
-            };
-
             let todos = [{text:'保險投保完成',done:false}];
+            let packingData = {"行前作業":[{t:"訂機票",d:true},{t:"訂飯店",d:false}],"隨身物品":[{t:"護照",d:false},{t:"信用卡",d:false}],"電器相關":[{t:"行動電源",d:false}]};
+            let plans = {
+                0: [{cat:'🚗 移動',time:'11:00',loc:'機場',desc:'',map:'',jpy:0,twd:0}],
+                1: [{cat:'🚗 移動',time:'02:30',loc:'桃園🔜成田',desc:'MM620',map:'',jpy:0,twd:9980},{cat:'🚗 移動',time:'07:00',loc:'Access 特急',desc:'直達淺草',map:'',jpy:1310,twd:275},{cat:'🏠 住宿',time:'--',loc:'淺草住宿',desc:'5/22-24',map:'',jpy:0,twd:3300}],
+                2: [{cat:'🏖️ 景點',time:'14:30',loc:'妙義神社',desc:'',map:''},{cat:'🧁 吃喝',time:'--',loc:'銀座 篝',desc:'',map:'',jpy:1500,twd:315}]
+            };
+
             const el = (id) => document.getElementById(id);
 
             window.switchTab = (tab) => {
-                ['dashSection', 'itinerarySection', 'expenseSection'].forEach(s => {
-                    const section = el(s); if(section) section.classList.add('hidden');
+                ['dash', 'itinerary', 'expense'].forEach(s => {
+                    const section = el(s + 'Section');
+                    const btn = el('btn-' + s.substring(0, 3));
+                    if(section) section.classList.add('hidden');
+                    if(btn) btn.classList.remove('active');
                 });
-                const target = el(tab + 'Section'); if(target) target.classList.remove('hidden');
-                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                const btnID = 'btn-' + tab.substring(0,3);
-                const activeBtn = el(btnID); if(activeBtn) activeBtn.classList.add('active');
-                if(el('pageTitle')) el('pageTitle').innerText = tab==='dash'?'總覽':(tab==='itinerary'?'行程':'支出');
+                el(tab + 'Section').classList.remove('hidden');
+                el('btn-' + tab.substring(0, 3)).classList.add('active');
+                el('pageTitle').innerText = tab==='dash'?'總覽':(tab==='itinerary'?'行程':'支出');
             };
 
-            window.setDay = (i) => {
-                currentDayIdx = i;
-                if(el('itiDateTitle')) el('itiDateTitle').innerText = dates[i].full;
-                renderDates(); renderPlans();
-            };
-
-            window.renderDates = () => {
-                const nav = el('dateNav'); if(!nav) return;
-                nav.innerHTML = dates.map((d, i) => `
-                    <div onclick="setDay(${i})" class="date-card soft-shadow ${i === currentDayIdx ? 'active' : ''}">
-                        <span class="text-[10px] mb-1 font-bold uppercase opacity-50">${d.w}</span>
-                        <span class="text-lg font-bold">${d.d}</span>
-                    </div>
-                `).join('');
-            };
-
+            window.setDay = (i) => { currentDayIdx = i; el('itiDateTitle').innerText = dates[i].full; renderDates(); renderPlans(); };
+            window.renderDates = () => { el('dateNav').innerHTML = dates.map((d, i) => `<div onclick="setDay(${i})" class="date-card soft-shadow ${i === currentDayIdx ? 'active' : ''}"><span class="text-[10px] mb-1 font-bold opacity-50 uppercase">${d.w}</span><span class="text-lg font-bold">${d.d}</span></div>`).join(''); };
             window.renderPlans = () => {
-                const list = el('planList'); if(!list) return;
                 const dayPlans = plans[currentDayIdx] || [];
-                list.innerHTML = dayPlans.map((p, i) => `
-                    <div class="itinerary-card soft-shadow">
-                        <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex items-center space-x-2"><span class="category-tag">${p.cat}</span><span class="text-xs opacity-50 font-bold">${p.time}</span></div>
-                                <div class="flex space-x-4 text-slate-300">
-                                    <button onclick="editPlan(${i})"><i class="fas fa-pen text-xs"></i></button>
-                                    ${p.map ? `<button onclick="window.open('${p.map}')" class="text-[var(--sky-blue)]"><i class="fas fa-location-dot text-sm"></i></button>` : ''}
-                                </div>
-                            </div>
-                            <h3 class="font-bold text-lg mb-1 text-[var(--primary-blue)]">${p.loc}</h3>
-                            <p class="text-xs text-[var(--text-grey)] leading-relaxed whitespace-pre-line">${p.desc}</p>
-                        </div>
-                        ${p.twd > 0 ? `<div class="mt-4 text-[11px] font-black text-[var(--sky-blue)] flex justify-between border-t border-gray-50 pt-3"><span>支出</span><span>NT$ ${p.twd.toLocaleString()}</span></div>` : ''}
-                    </div>
-                `).join('');
+                el('planList').innerHTML = dayPlans.map((p, i) => `<div class="itinerary-card soft-shadow"><div><div class="flex justify-between items-start mb-3"><div class="flex items-center space-x-2"><span class="category-tag">${p.cat}</span><span class="text-xs opacity-50 font-bold">${p.time}</span></div><div class="flex space-x-4 text-slate-300"><button onclick="editPlan(${i})"><i class="fas fa-pen text-xs"></i></button>${p.map ? `<button onclick="window.open('${p.map}')" class="text-[var(--sky-blue)]"><i class="fas fa-location-dot text-sm"></i></button>` : ''}</div></div><h3 class="font-bold text-lg mb-1">${p.loc}</h3><p class="text-xs text-[var(--text-grey)] leading-relaxed">${p.desc}</p></div>${p.twd > 0 ? `<div class="mt-4 text-[11px] font-black text-[var(--sky-blue)] flex justify-between border-t border-gray-50 pt-3"><span>支出</span><span>NT$ ${p.twd.toLocaleString()}</span></div>` : ''}</div>`).join('');
             };
 
             window.openPacking = () => {
                 let html = '';
                 for(let c in packingData) {
-                    html += `<div><h4 class="text-[11px] font-black opacity-30 mb-3 uppercase text-[var(--primary-blue)]">${c}</h4><div class="grid grid-cols-2 gap-3">`;
-                    packingData[c].forEach((item, i) => {
-                        html += `<div onclick="togglePack('${c}', ${i})" class="flex items-center p-4 rounded-2xl bg-[var(--light-grey)] cursor-pointer"><i class="far ${item.d?'fa-check-square text-[var(--sky-blue)]':'fa-square opacity-20'} mr-3"></i><span class="text-xs font-bold ${item.d?'strikethrough':''}">${item.t}</span></div>`;
-                    });
+                    html += `<div><h4 class="text-[11px] font-black opacity-30 mb-3 uppercase">${c}</h4><div class="grid grid-cols-2 gap-3">`;
+                    packingData[c].forEach((item, i) => { html += `<div onclick="togglePack('${c}', ${i})" class="flex items-center p-4 rounded-2xl bg-[#f1f1f1] cursor-pointer"><i class="far ${item.d?'fa-check-square text-[var(--sky-blue)]':'fa-square opacity-20'} mr-3"></i><span class="text-xs font-bold ${item.d?'strikethrough':''}">${item.t}</span></div>`; });
                     html += `</div></div>`;
                 }
-                if(el('packingContent')) el('packingContent').innerHTML = html;
-                if(el('packingModal')) el('packingModal').classList.remove('hidden');
+                el('packingContent').innerHTML = html; el('packingModal').classList.remove('hidden');
             };
             window.togglePack = (c, i) => { packingData[c][i].d = !packingData[c][i].d; openPacking(); };
-            window.closePacking = () => el('packingModal') && el('packingModal').classList.add('hidden');
-
-            window.openPlanModal = () => { if(el('editIdx')) el('editIdx').value = ""; document.querySelectorAll('.input-group').forEach(input => input.value = ''); if(el('planModal')) el('planModal').classList.remove('hidden'); };
-            window.closePlanModal = () => el('planModal') && el('planModal').classList.add('hidden');
+            window.closePacking = () => el('packingModal').classList.add('hidden');
+            window.openPlanModal = () => { el('editIdx').value = ""; document.querySelectorAll('.input-group').forEach(input => input.value = ''); el('planModal').classList.remove('hidden'); };
+            window.closePlanModal = () => el('planModal').classList.add('hidden');
             window.editPlan = (i) => {
-                const p = plans[currentDayIdx][i];
-                if(el('editIdx')) el('editIdx').value = i; if(el('inLoc')) el('inLoc').value = p.loc; if(el('inTime')) el('inTime').value = p.time; if(el('inMap')) el('inMap').value = p.map; if(el('inDesc')) el('inDesc').value = p.desc; if(el('inJPY')) el('inJPY').value = p.jpy; if(el('inTWD')) el('inTWD').value = p.twd; if(el('inCat')) el('inCat').value = p.cat;
-                if(el('planModal')) el('planModal').classList.remove('hidden');
+                const p = plans[currentDayIdx][i]; el('editIdx').value = i; el('inLoc').value = p.loc; el('inTime').value = p.time; el('inMap').value = p.map; el('inDesc').value = p.desc; el('inJPY').value = p.jpy; el('inTWD').value = p.twd; el('inCat').value = p.cat; el('planModal').classList.remove('hidden');
             };
             window.savePlan = () => {
-                const i = el('editIdx').value;
-                const newP = { cat:el('inCat').value, loc:el('inLoc').value, time:el('inTime').value, map:el('inMap').value, desc:el('inDesc').value, jpy:parseInt(el('inJPY').value)||0, twd:parseInt(el('inTWD').value)||0 };
+                const i = el('editIdx').value; const newP = { cat:el('inCat').value, loc:el('inLoc').value, time:el('inTime').value, map:el('inMap').value, desc:el('inDesc').value, jpy:parseInt(el('inJPY').value)||0, twd:parseInt(el('inTWD').value)||0 };
                 if(i !== "") plans[currentDayIdx][i] = newP; else { if(!plans[currentDayIdx]) plans[currentDayIdx]=[]; plans[currentDayIdx].push(newP); }
                 closePlanModal(); renderPlans(); updateStats();
             };
             window.calcTWD = () => { const j = el('inJPY').value; if(el('inTWD')) el('inTWD').value = j ? Math.round(j*rate) : ''; };
             window.addTodo = () => { const t = prompt("事項："); if(t) { todos.push({text:t, done:false}); renderTodos(); } };
             window.toggleTodo = (i) => { todos[i].done = !todos[i].done; renderTodos(); };
-            window.renderTodos = () => {
-                const list = el('todoList'); if(list) list.innerHTML = todos.map((t, i) => `<div class="flex items-center justify-between p-1" onclick="toggleTodo(${i})"><div class="flex items-center cursor-pointer"><i class="far ${t.done?'fa-check-circle text-[var(--sky-blue)]':'fa-circle opacity-20'} mr-3"></i><span class="text-sm font-medium ${t.done?'strikethrough':''}">${t.text}</span></div></div>`).join('');
-            };
+            window.renderTodos = () => { el('todoList').innerHTML = todos.map((t, i) => `<div class="flex items-center justify-between p-1" onclick="toggleTodo(${i})"><div class="flex items-center cursor-pointer"><i class="far ${t.done?'fa-check-circle text-[var(--sky-blue)]':'fa-circle opacity-20'} mr-3"></i><span class="text-sm font-medium ${t.done?'strikethrough':''}">${t.text}</span></div></div>`).join(''); };
             window.updateStats = () => {
                 let total = 0; Object.values(plans).forEach(day => day.forEach(p => total += (p.twd || 0)));
                 if(el('dashTotalExp')) el('dashTotalExp').innerText = `NT$ ${total.toLocaleString()}`;
@@ -266,16 +188,13 @@
                 renderExpenses();
             };
             window.renderExpenses = () => {
-                let html = ''; Object.keys(plans).forEach(d => plans[d].forEach(p => {
-                    if(p.twd > 0) html += `<div class="glass-card soft-shadow flex justify-between items-center px-6"><div><p class="text-sm font-bold">${p.loc}</p><p class="text-[9px] opacity-40 font-bold">${dates[d].full}</p></div><p class="font-bold text-sm text-[var(--primary-blue)]">NT$ ${p.twd.toLocaleString()}</p></div>`;
-                }));
-                if(el('expenseList')) el('expenseList').innerHTML = html || '<p class="text-center opacity-20 py-10">尚無紀錄</p>';
+                let html = ''; Object.keys(plans).forEach(d => plans[d].forEach(p => { if(p.twd > 0) html += `<div class="glass-card soft-shadow flex justify-between items-center px-6"><div><p class="text-sm font-bold">${p.loc}</p><p class="text-[9px] opacity-40 font-bold">${dates[d].full}</p></div><p class="font-bold text-sm text-[var(--primary-blue)]">NT$ ${p.twd.toLocaleString()}</p></div>`; }));
+                el('expenseList').innerHTML = html || '<p class="text-center opacity-20 py-10">尚無紀錄</p>';
             };
 
-            switchTab('dash'); renderTodos(); renderDates(); setDay(1); updateStats();
+            setDay(1); renderTodos(); updateStats();
         };
-
-        if (document.readyState === 'complete') { initApp(); } else { window.addEventListener('load', initApp); }
+        initApp();
     </script>
 </body>
 </html>
