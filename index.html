@@ -11,9 +11,9 @@
         
         :root {
             --bg-page: #fffdf5;     /* 要求的奶米色底 */
-            --primary-blue: #364c84; /* 要求的深海藍 */
-            --sky-blue: #95b1ee;    /* 要求的藍色 */
-            --light-green: #e7F1a8;  /* 要求的極光綠 */
+            --primary-blue: #364c84; /* 深海藍 */
+            --sky-blue: #95b1ee;    
+            --light-green: #e7f1a8; 
             --text-grey: #707070;
             --light-grey: #f4f4f4;
         }
@@ -29,23 +29,22 @@
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
-        /* 極淡柔和陰影 */
+        /* 極淡柔和陰影 - 絕不切邊 */
         .soft-shadow { 
-            box-shadow: 0 8px 30px rgba(54, 76, 132, 0.03); 
+            box-shadow: 0 10px 30px rgba(54, 76, 132, 0.04); 
         }
 
-        /* 統一卡片樣式與間距 */
+        /* 統一卡片樣式 */
         .glass-card { 
             background: white; 
-            border-radius: 26px; 
+            border-radius: 28px; 
             padding: 24px; 
             margin-bottom: 16px; 
-            border: 1px solid rgba(54, 76, 132, 0.02);
         }
 
         .itinerary-card { 
             background: white; 
-            border-radius: 26px; 
+            border-radius: 28px; 
             padding: 24px; 
             margin-bottom: 16px; 
             min-height: 110px; 
@@ -54,18 +53,23 @@
             justify-content: space-between;
         }
 
-        /* 日期導航 */
+        /* 日期導航容器 - 增加高度防止陰影被切 */
+        .date-nav-container {
+            padding: 15px 0;
+            margin-bottom: 5px;
+        }
+
         .date-card { 
             width: 66px; height: 88px; border-radius: 20px; transition: 0.3s; 
             background: white; flex-shrink: 0; cursor: pointer; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            opacity: 0.5; margin: 0 4px;
+            opacity: 0.5; margin: 0 6px;
         }
         .date-card.active { 
             background-color: var(--light-green) !important; 
             opacity: 1;
-            box-shadow: 0 10px 20px rgba(231, 241, 168, 0.3);
-            transform: scale(1.03);
+            box-shadow: 0 8px 15px rgba(231, 241, 168, 0.6);
+            transform: scale(1.05);
         }
 
         .nav-btn { color: #CCCCCC; text-align: center; font-size: 11px; flex: 1; border: none; background: none; outline: none; }
@@ -73,7 +77,7 @@
 
         .category-tag { font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 8px; background: var(--light-grey); color: var(--primary-blue); }
         .strikethrough { text-decoration: line-through; opacity: 0.3; }
-        .input-group { background: var(--light-grey); border-radius: 12px; padding: 14px; margin-bottom: 10px; width: 100%; border: none; font-size: 14px; outline: none; }
+        .input-group { background: var(--light-grey); border-radius: 14px; padding: 14px; margin-bottom: 10px; width: 100%; border: none; font-size: 14px; outline: none; }
         .hidden { display: none !important; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -128,10 +132,10 @@
         </div>
 
         <div id="itinerarySection" class="hidden">
-            <div class="py-2 mb-2">
-                <div id="dateNav" class="flex overflow-x-auto py-2 space-x-2 no-scrollbar -mx-2 px-2"></div>
+            <div class="date-nav-container">
+                <div id="dateNav" class="flex overflow-x-auto py-2 space-x-1 no-scrollbar -mx-2 px-2"></div>
             </div>
-            <div class="flex justify-between items-center mb-5 mt-4">
+            <div class="flex justify-between items-center mb-5 mt-2">
                 <h2 id="itiDateTitle" class="text-2xl font-bold italic">日期</h2>
                 <button onclick="openPlanModal()" class="text-[var(--sky-blue)] text-sm font-bold">+ 新增行程</button>
             </div>
@@ -139,8 +143,8 @@
         </div>
 
         <div id="expenseSection" class="hidden">
-            <div class="glass-card soft-shadow p-12 text-center mb-8 bg-white">
-                <p class="text-xs opacity-40 uppercase tracking-widest mb-2 font-bold">全程預算總計</p>
+            <div class="glass-card soft-shadow p-12 text-center mb-8">
+                <p class="text-xs opacity-40 uppercase tracking-widest mb-2 font-bold">全程總支出</p>
                 <p id="totalCostDisplay" class="text-4xl font-bold">NT$ 0</p>
             </div>
             <div id="expenseList" class="space-y-4"></div>
@@ -148,7 +152,7 @@
     </main>
 
     <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl h-24 flex justify-around items-center border-t border-gray-100 px-8 z-40">
-        <button onclick="switchTab('dash')" class="nav-btn active" id="btn-dash"><i class="fas fa-th-large text-xl mb-1"></i><br>總覽</button>
+        <button onclick="switchTab('dash')" class="nav-btn active" id="btn-das"><i class="fas fa-th-large text-xl mb-1"></i><br>總覽</button>
         <button onclick="switchTab('itinerary')" class="nav-btn" id="btn-iti"><i class="fas fa-calendar-alt text-xl mb-1"></i><br>行程</button>
         <button onclick="switchTab('expense')" class="nav-btn" id="btn-exp"><i class="fas fa-wallet text-xl mb-1"></i><br>支出</button>
     </nav>
@@ -186,50 +190,60 @@
             
             let packingData = {
                 "行前作業": [{t:"訂機票",d:true},{t:"訂飯店",d:false},{t:"旅遊保險",d:false}],
-                "隨身物品": [{t:"護照(含影本)",d:false},{t:"身分證/信用卡",d:false},{t:"錢/SIM卡",d:false},{t:"口紅/保溫瓶",d:false}],
-                "清潔美妝": [{t:"化妝包/乳液",d:false},{t:"洗面乳/卸妝",d:false},{t:"沖牙機/隱眼",d:false},{t:"衛生棉",d:false}],
-                "生活用品": [{t:"吹風機",d:false},{t:"衣服/內褲/襪",d:false},{t:"帽子/口罩/浴巾",d:false}],
-                "電器相關": [{t:"行動電源",d:false},{t:"手機充電線",d:false},{t:"相機/電池/充",d:false}]
+                "隨身物品": [{t:"護照（含影本）",d:false},{t:"身分證",d:false},{t:"信用卡",d:false},{t:"錢",d:false},{t:"sim卡",d:false},{t:"口紅",d:false},{t:"保溫瓶",d:false}],
+                "化妝用品": [{t:"化妝水、乳液",d:false},{t:"化妝包",d:false}],
+                "清潔用品": [{t:"牙刷牙膏",d:false},{t:"沖牙機",d:false},{t:"衛生棉",d:false},{t:"洗面乳",d:false},{t:"卸妝",d:false},{t:"隱形眼鏡",d:false},{t:"眼藥水",d:false},{t:"衛生紙",d:false},{t:"濕紙巾",d:false},{t:"酒精",d:false},{t:"潤髮乳",d:false},{t:"面膜",d:false},{t:"刮鬍刀",d:false}],
+                "生活用品": [{t:"吹風機",d:false},{t:"護手霜",d:false},{t:"口罩",d:false},{t:"衣服",d:false},{t:"內褲",d:false},{t:"襪子",d:false},{t:"帽子",d:false},{t:"內衣",d:false},{t:"浴巾",d:false}],
+                "電器相關": [{t:"行動電源",d:false},{t:"充電器(手機、手錶)",d:false},{t:"手機架",d:false},{t:"相機",d:false},{t:"相機電池",d:false},{t:"相機充電器",d:false}]
             };
 
             let plans = {
-                0: [{cat:'🚗 移動',time:'11:00',loc:'前往機場',desc:'',map:'',jpy:0,twd:0}],
+                0: [{cat:'🚗 移動',time:'11:00',loc:'桃園停車🔜機場',desc:'',map:'',jpy:0,twd:0}],
                 1: [
                     {cat:'🚗 移動',time:'02:30',loc:'桃園🔜成田 (MM620)',desc:'桃園 T1',map:'',jpy:0,twd:9980},
                     {cat:'🚗 移動',time:'07:00',loc:'Access 特急',desc:'直達淺草',map:'',jpy:1310,twd:275},
-                    {cat:'🏖️ 景點',time:'09:00',loc:'淺草寺 雷門',desc:'寄放行李',map:'maps.google.com/11},
+                    {cat:'🏖️ 景點',time:'09:00',loc:'淺草寺 雷門',desc:'寄放行李',map:'maps.google.com/16},
                     {cat:'🏠 住宿',time:'--',loc:'淺草住宿',desc:'5/22-24',map:'',jpy:0,twd:3300}
                 ],
-                2: [{cat:'🏖️ 景點',time:'14:30',loc:'妙義神社',desc:'',map:'googleusercontent.com/maps.google.com/13}, {cat:'🧁 吃喝',time:'--',loc:'銀座 篝',desc:'',map:'',jpy:1500,twd:315}],
+                2: [{cat:'🏖️ 景點',time:'14:30',loc:'妙義神社',desc:'',map:'usercontent.com/maps.google.com/17}, {cat:'🧁 吃喝',time:'--',loc:'銀座 篝',desc:'',map:'',jpy:1500,twd:315}],
                 3: [{cat:'🚗 移動',time:'10:00',loc:'新宿寄行李',desc:'',map:'',jpy:0,twd:0}],
                 4: [{cat:'🚗 移動',time:'18:00',loc:'箱根🔜新宿',desc:'',map:'',jpy:2400,twd:504}],
-                5: [{cat:'🧁 吃喝',time:'--',loc:'Chiikawa Bakery',desc:'',map:'',jpy:1300,twd:275}],
-                6: [{cat:'🚗 移動',time:'22:10',loc:'成田🔜桃園',desc:'返航',map:'',jpy:0,twd:0}]
+                5: [{cat:'🧁 吃喝',time:'--',loc:'Chiikawa Bakery',desc:'Klook預約',map:'',jpy:1300,twd:275}],
+                6: [{cat:'🚗 移動',time:'22:10',loc:'成田🔜桃園 (MM627)',desc:'返航',map:'',jpy:0,twd:0}]
             };
 
             let todos = [{text:'保險投保完成',done:false}];
-
             const el = (id) => document.getElementById(id);
 
             window.switchTab = (tab) => {
-                ['dashSection', 'itinerarySection', 'expenseSection'].forEach(s => el(s) && el(s).classList.add('hidden'));
+                ['dashSection', 'itinerarySection', 'expenseSection'].forEach(s => {
+                    const section = el(s);
+                    if(section) section.classList.add('hidden');
+                });
                 const target = el(tab + 'Section');
                 if(target) target.classList.remove('hidden');
+
                 document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                const activeBtn = el('btn-' + tab.substring(0,3));
+                const btnID = 'btn-' + tab.substring(0,3);
+                const activeBtn = el(btnID);
                 if(activeBtn) activeBtn.classList.add('active');
-                el('pageTitle').innerText = tab==='dash'?'總覽':(tab==='itinerary'?'行程':'支出');
+                
+                const titleEl = el('pageTitle');
+                if(titleEl) titleEl.innerText = tab==='dash'?'總覽':(tab==='itinerary'?'行程':'支出');
             };
 
             window.setDay = (i) => {
                 currentDayIdx = i;
-                el('itiDateTitle').innerText = dates[i].full;
+                const itiTitle = el('itiDateTitle');
+                if(itiTitle) itiTitle.innerText = dates[i].full;
                 renderDates();
                 renderPlans();
             };
 
             window.renderDates = () => {
-                el('dateNav').innerHTML = dates.map((d, i) => `
+                const nav = el('dateNav');
+                if(!nav) return;
+                nav.innerHTML = dates.map((d, i) => `
                     <div onclick="setDay(${i})" class="date-card soft-shadow ${i === currentDayIdx ? 'active' : ''}">
                         <span class="text-[10px] mb-1 font-bold uppercase opacity-50">${d.w}</span>
                         <span class="text-lg font-bold">${d.d}</span>
@@ -238,8 +252,10 @@
             };
 
             window.renderPlans = () => {
+                const list = el('planList');
+                if(!list) return;
                 const dayPlans = plans[currentDayIdx] || [];
-                el('planList').innerHTML = dayPlans.map((p, i) => `
+                list.innerHTML = dayPlans.map((p, i) => `
                     <div class="itinerary-card soft-shadow">
                         <div>
                             <div class="flex justify-between items-start mb-3">
@@ -266,37 +282,49 @@
                     });
                     html += `</div></div>`;
                 }
-                el('packingContent').innerHTML = html;
-                el('packingModal').classList.remove('hidden');
+                const packEl = el('packingContent');
+                if(packEl) packEl.innerHTML = html;
+                const modal = el('packingModal');
+                if(modal) modal.classList.remove('hidden');
             };
             window.togglePack = (c, i) => { packingData[c][i].d = !packingData[c][i].d; openPacking(); };
-            window.closePacking = () => el('packingModal').classList.add('hidden');
+            window.closePacking = () => { const modal = el('packingModal'); if(modal) modal.classList.add('hidden'); };
 
-            window.openPlanModal = () => { el('editIdx').value = ""; document.querySelectorAll('.input-group').forEach(input => input.value = ''); el('planModal').classList.remove('hidden'); };
-            window.closePlanModal = () => el('planModal').classList.add('hidden');
+            window.openPlanModal = () => { 
+                const eIdx = el('editIdx'); if(eIdx) eIdx.value = ""; 
+                document.querySelectorAll('.input-group').forEach(input => input.value = ''); 
+                const modal = el('planModal'); if(modal) modal.classList.remove('hidden'); 
+            };
+            window.closePlanModal = () => { const modal = el('planModal'); if(modal) modal.classList.add('hidden'); };
+
             window.editPlan = (i) => {
                 const p = plans[currentDayIdx][i];
-                el('editIdx').value = i; el('inLoc').value = p.loc; el('inTime').value = p.time; el('inMap').value = p.map; el('inDesc').value = p.desc; el('inJPY').value = p.jpy; el('inTWD').value = p.twd; el('inCat').value = p.cat;
-                el('planModal').classList.remove('hidden');
+                const fields = { editIdx: i, inLoc: p.loc, inTime: p.time, inMap: p.map, inDesc: p.desc, inJPY: p.jpy, inTWD: p.twd, inCat: p.cat };
+                for (let f in fields) { const input = el(f); if(input) input.value = fields[f]; }
+                const modal = el('planModal'); if(modal) modal.classList.remove('hidden');
             };
+
             window.savePlan = () => {
                 const i = el('editIdx').value;
                 const newP = { cat:el('inCat').value, loc:el('inLoc').value, time:el('inTime').value, map:el('inMap').value, desc:el('inDesc').value, jpy:parseInt(el('inJPY').value)||0, twd:parseInt(el('inTWD').value)||0 };
                 if(i !== "") plans[currentDayIdx][i] = newP; else { if(!plans[currentDayIdx]) plans[currentDayIdx]=[]; plans[currentDayIdx].push(newP); }
                 closePlanModal(); renderPlans(); updateStats();
             };
-            window.calcTWD = () => { const j = el('inJPY').value; el('inTWD').value = j ? Math.round(j*rate) : ''; };
+
+            window.calcTWD = () => { const j = el('inJPY').value; const twd = el('inTWD'); if(twd) twd.value = j ? Math.round(j*rate) : ''; };
             window.addTodo = () => { const t = prompt("事項："); if(t) { todos.push({text:t, done:false}); renderTodos(); } };
             window.toggleTodo = (i) => { todos[i].done = !todos[i].done; renderTodos(); };
+
             window.renderTodos = () => {
-                el('todoList').innerHTML = todos.map((t, i) => `<div class="flex items-center justify-between p-1" onclick="toggleTodo(${i})"><div class="flex items-center cursor-pointer"><i class="far ${t.done?'fa-check-circle text-[var(--sky-blue)]':'fa-circle opacity-20'} mr-3"></i><span class="text-sm font-medium ${t.done?'strikethrough':''}">${t.text}</span></div></div>`).join('');
+                const list = el('todoList');
+                if(list) list.innerHTML = todos.map((t, i) => `<div class="flex items-center justify-between p-1" onclick="toggleTodo(${i})"><div class="flex items-center cursor-pointer"><i class="far ${t.done?'fa-check-circle text-[var(--sky-blue)]':'fa-circle opacity-20'} mr-3"></i><span class="text-sm font-medium ${t.done?'strikethrough':''}">${t.text}</span></div></div>`).join('');
             };
 
             window.updateStats = () => {
                 let total = 0;
                 Object.values(plans).forEach(day => day.forEach(p => total += (p.twd || 0)));
-                if(el('dashTotalExp')) el('dashTotalExp').innerText = `NT$ ${total.toLocaleString()}`;
-                if(el('totalCostDisplay')) el('totalCostDisplay').innerText = `NT$ ${total.toLocaleString()}`;
+                const dExp = el('dashTotalExp'); if(dExp) dExp.innerText = `NT$ ${total.toLocaleString()}`;
+                const tExp = el('totalCostDisplay'); if(tExp) tExp.innerText = `NT$ ${total.toLocaleString()}`;
                 renderExpenses();
             };
 
@@ -305,7 +333,8 @@
                 Object.keys(plans).forEach(d => plans[d].forEach(p => {
                     if(p.twd > 0) html += `<div class="glass-card soft-shadow flex justify-between items-center px-6"><div><p class="text-sm font-bold">${p.loc}</p><p class="text-[9px] opacity-40 font-bold">${dates[d].full}</p></div><p class="font-bold text-sm text-[var(--primary-blue)]">NT$ ${p.twd.toLocaleString()}</p></div>`;
                 }));
-                el('expenseList').innerHTML = html || '<p class="text-center opacity-20 py-10">尚無紀錄</p>';
+                const eList = el('expenseList');
+                if(eList) eList.innerHTML = html || '<p class="text-center opacity-20 py-10">尚無紀錄</p>';
             };
 
             switchTab('dash'); renderTodos(); renderDates(); setDay(1); updateStats();
