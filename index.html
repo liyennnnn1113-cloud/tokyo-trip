@@ -17,16 +17,21 @@
         }
         body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg-page); color: var(--primary-blue); margin: 0; padding-bottom: 120px; overflow-x: hidden; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
+        
         .soft-shadow { box-shadow: 0 10px 30px rgba(54, 76, 132, 0.04); }
         .glass-card { background: white; border-radius: 28px; padding: 24px; border: 1px solid rgba(255,255,255,0.8); }
         .itinerary-card { background: white; border-radius: 28px; padding: 24px; min-height: 110px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        
         .date-card { width: 66px; height: 88px; border-radius: 20px; transition: 0.3s; background: white; flex-shrink: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.5; margin: 0 6px; }
         .date-card.active { background-color: var(--light-green) !important; opacity: 1; box-shadow: 0 8px 15px rgba(231, 241, 168, 0.4); transform: scale(1.05); }
+        
         .nav-btn { color: #CCCCCC; text-align: center; font-size: 11px; flex: 1; border: none; background: none; outline: none; transition: 0.3s; }
         .nav-btn.active { color: var(--primary-blue) !important; font-weight: bold; }
+        
         .category-tag { font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 8px; background: #f1f1f1; color: var(--primary-blue); }
         .check-item { display: flex; align-items: center; gap: 12px; font-size: 14px; margin-bottom: 12px; color: var(--text-grey); }
         .check-item i { color: var(--sky-blue); font-size: 16px; }
+        
         .hidden { display: none !important; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -37,12 +42,13 @@
     <header class="p-8 pb-4 flex justify-between items-center">
         <div>
             <h1 id="pageTitle" class="text-3xl font-bold tracking-tight text-[var(--primary-blue)]">總覽</h1>
-            <p id="pageSubTitle" class="text-sm text-[var(--text-grey)]">Tokyo Adventure 2026</p>
+            <p id="pageSubTitle" class="text-sm text-[var(--text-grey)]">Tokyo Trip 2026</p>
         </div>
         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center soft-shadow font-bold text-[var(--primary-blue)]">V</div>
     </header>
 
     <main id="mainContent" class="px-6 fade-in">
+        <!-- 總覽分頁 -->
         <div id="dashSection">
             <div class="flex flex-col gap-4">
                 <div class="glass-card soft-shadow flex justify-between items-center">
@@ -75,6 +81,7 @@
             </div>
         </div>
 
+        <!-- 行程分頁 -->
         <div id="itinerarySection" class="hidden">
             <div style="padding: 15px 0;">
                 <div id="dateNav" class="flex overflow-x-auto py-2 space-x-1 no-scrollbar -mx-2 px-2"></div>
@@ -83,6 +90,7 @@
             <div id="planList" class="flex flex-col gap-4"></div>
         </div>
 
+        <!-- 支出分頁 -->
         <div id="expenseSection" class="hidden">
             <div class="glass-card soft-shadow p-10 text-center mb-6">
                 <p class="text-xs opacity-40 uppercase tracking-widest mb-1 font-bold">Total Budget</p>
@@ -96,6 +104,7 @@
         </div>
     </main>
 
+    <!-- 底部導航 -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl h-24 flex justify-around items-center border-t border-gray-100 px-8 z-40">
         <button onclick="switchTab('dash')" class="nav-btn active" id="btn-das"><i class="fas fa-th-large text-xl mb-1"></i><br>總覽</button>
         <button onclick="switchTab('itinerary')" class="nav-btn" id="btn-iti"><i class="fas fa-calendar-alt text-xl mb-1"></i><br>行程</button>
@@ -106,11 +115,11 @@
         const plans = {
             0: [
                 {time:'21:30', cat:'🚗 移動', loc:'太平🔜桃園', desc:'台中-桃園 (約2小時)', map:'', twd:0},
-                {time:'23:00', cat:'🚗 移動', loc:'桃園停車🔜機場', desc:'', map:'', twd:0}
+                {time:'23:00', cat:'🚗 移動', loc:'桃園停車🔜機場', desc:'', map:'', twd:1500}
             ],
             1: [
                 {time:'02:30', cat:'🚗 移動', loc:'桃園🔜成田', desc:'MM620 (02:30-06:30)', map:'', twd:9980},
-                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準1號月台\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'', twd:275},
+                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準1號月台\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'', twd:275.1},
                 {time:'09:00', cat:'🚗 移動', loc:'7-11 淺草雷門前店 行李寄放', desc:'寄放行李 9:00-17:00', map:'https://maps.app.goo.gl/Asakusa', twd:168},
                 {time:'09:10', cat:'⛱ 景點', loc:'淺草寺 雷門', desc:'', map:'', twd:0},
                 {time:'10:00', cat:'🧁 吃喝', loc:'Asakusa Unana', desc:'09:30–17:30', map:'https://maps.app.goo.gl/W6KkrCGFHDS9BiYh9', twd:0},
@@ -118,7 +127,7 @@
                 {time:'10:10', cat:'🧁 吃喝', loc:'淺草花月堂菠蘿麵包', desc:'', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
                 {time:'10:15', cat:'🧁 吃喝', loc:'炸饅頭 / 人型餅', desc:'仲見世商店街', map:'https://maps.app.goo.gl/R5cXDP9FrmHijedW8', twd:0},
                 {time:'10:20', cat:'🧁 吃喝', loc:'仲見世商店街 / 阿美橫町', desc:'', map:'https://maps.app.goo.gl/5ABPjydwkuMk6MQJ7', twd:0},
-                {time:'11:00', cat:'🏖️ 景點', loc:'Asakusa ROX Spa', desc:'溫泉泡澡休息', map:'https://maps.app.goo.gl/Tnn2UzAAtHyXB9DC7', twd:578},
+                {time:'11:00', cat:'🏖️ 景點', loc:'Asakusa ROX Spa', desc:'溫泉泡澡休息', map:'https://maps.app.goo.gl/Tnn2UzAAtHyXB9DC7', twd:0},
                 {time:'13:00', cat:'🧁 吃喝', loc:'利久牛舌 / 拉麵鴨 to Negi', desc:'上野周邊美食', map:'https://maps.app.goo.gl/BJ9YyBNHvytJXjKD7', twd:0},
                 {time:'13:30', cat:'🧁 吃喝', loc:'牛骨拉麺 磯川 上野店', desc:'', map:'https://maps.app.goo.gl/TzH63rWZojJ9Zyyf6', twd:0},
                 {time:'16:00', cat:'🚗 移動', loc:'取行李 7-11 淺草雷門前店', desc:'', map:'', twd:0},
@@ -130,26 +139,26 @@
                 {time:'12:00', cat:'🏖️ 景點', loc:'妙義神社', desc:'', map:'', twd:0},
                 {time:'13:00', cat:'🏖️ 景點', loc:'吉伊卡哇樂園 / 寶可夢中心', desc:'', map:'', twd:0},
                 {time:'15:00', cat:'🏖️ 景點', loc:'豪德寺 / 東京鐵塔', desc:'', map:'', twd:0},
-                {time:'19:00', cat:'🧁 吃喝', loc:'銀座 篝 (本店/大手町)', desc:'雞白湯拉麵', map:'', twd:315},
+                {time:'19:00', cat:'🧁 吃喝', loc:'銀座 篝 (本店/大手町)', desc:'雞白湯拉麵', map:'', twd:1386},
                 {time:'21:00', cat:'🧁 吃喝', loc:'いづも 池袋 居酒屋 / PATISSERIE TEN&', desc:'', map:'', twd:0}
             ],
             3: [
                 {time:'08:30', cat:'🚗 移動', loc:'退房🔜寄行李 (安心之宿)', desc:'新宿站前店', map:'https://maps.app.goo.gl/QdcGhFprEnp5u9P56', twd:0},
-                {time:'09:30', cat:'🚗 移動', loc:'安心之宿 行李寄放', desc:'5/24 9:00-5/25 22:00', map:'', twd:0},
+                {time:'09:30', cat:'🚗 移動', loc:'安心之宿 行李寄放', desc:'5/24 9:00-5/25 22:00', map:'', twd:840},
                 {time:'10:00', cat:'🚗 移動', loc:'新宿🔜鎌倉', desc:'10:20上車 🔜 11:29抵達片瀨江之島', map:'https://maps.app.goo.gl/MprDGgMmAzvkze5U8', twd:0},
                 {time:'11:30', cat:'🏖️ 景點', loc:'鎌倉高校前 (平交道)', desc:'', map:'https://maps.app.goo.gl/8FGwRf9Z56ZHW8Rj7', twd:0},
                 {time:'12:30', cat:'🏖️ 景點', loc:'錢洗辨財天 / 小町通商店街', desc:'吃午餐', map:'', twd:0},
-                {time:'14:00', cat:'🚗 移動', loc:'包車到熱海', desc:'', map:'', twd:2500},
+                {time:'14:00', cat:'🚗 移動', loc:'包車到熱海', desc:'', map:'', twd:1875},
                 {time:'15:30', cat:'🏖️ 景點', loc:'熱海散策', desc:'', map:'', twd:0},
                 {time:'16:00', cat:'🧁 吃喝', loc:'熱海布丁 1號本店', desc:'', map:'', twd:0},
                 {time:'16:30', cat:'🏖️ 景點', loc:'熱海陽光海灘', desc:'', map:'', twd:0},
-                {time:'22:00', cat:'🏠 住宿', loc:'箱根住宿', desc:'', map:'', twd:3684}
+                {time:'22:00', cat:'🏠 住宿', loc:'箱根住宿', desc:'', map:'', twd:1842}
             ],
             4: [
-                {time:'10:00', cat:'🏖️ 景點', loc:'箱根玩耍 (10:00-17:00)', desc:'', map:'', twd:0},
-                {time:'17:46', cat:'🚗 移動', loc:'箱根湯本🔜新宿', desc:'17:46出發 🔜 19:26抵達新宿', map:'', twd:504},
+                {time:'10:00', cat:'🏖️ 景點', loc:'箱根玩耍 (週週券+車票)', desc:'', map:'', twd:1700},
+                {time:'17:46', cat:'🚗 移動', loc:'箱根湯本🔜新宿', desc:'17:46出發 🔜 19:26抵達新宿', map:'', twd:0},
                 {time:'20:00', cat:'🚗 移動', loc:'豪華膠囊旅館 安心之宿', desc:'拿行李', map:'', twd:0},
-                {time:'21:00', cat:'🏠 住宿', loc:'新宿由緣溫泉旅館', desc:'', map:'https://maps.app.goo.gl/xokUDBs16WQmymNt6', twd:5527}
+                {time:'21:00', cat:'🏠 住宿', loc:'新宿由緣溫泉旅館', desc:'', map:'https://maps.app.goo.gl/xokUDBs16WQmymNt6', twd:2763.5}
             ],
             5: [
                 {time:'11:00', cat:'🚗 移動', loc:'退房寄放行李', desc:'', map:'', twd:0},
@@ -198,7 +207,7 @@
             if(!nav) return;
             nav.innerHTML = dates.map((d, i) => `
                 <div onclick="setDay(${i})" class="date-card soft-shadow ${i === currentDayIdx ? 'active' : ''}">
-                    <span class="text-[10px] mb-1 font-bold opacity-50 uppercase">${d.w}</span>
+                    <span class="text-[10px] mb-1 font-bold uppercase">${d.w}</span>
                     <span class="text-lg font-bold">${d.d}</span>
                 </div>
             `).join('');
@@ -218,7 +227,7 @@
                         <h3 class="font-bold text-lg mb-1 text-[var(--primary-blue)]">${p.loc}</h3>
                         <p class="text-xs text-[var(--text-grey)] leading-relaxed whitespace-pre-line">${p.desc}</p>
                     </div>
-                    ${p.twd > 0 ? `<div class="mt-4 text-[11px] font-black text-[var(--sky-blue)] flex justify-between border-t border-gray-50 pt-3"><span>支出</span><span>NT$ ${p.twd.toLocaleString()}</span></div>` : ''}
+                    ${p.twd > 0 ? `<div class="mt-4 text-[11px] font-black text-[var(--sky-blue)] flex justify-between border-t border-gray-50 pt-3"><span>預估支出</span><span>NT$ ${Math.round(p.twd).toLocaleString()}</span></div>` : ''}
                 </div>
             `).join('');
         }
@@ -236,8 +245,8 @@
                     const dayItems = plans[day].filter(p => p.twd > 0);
                     if(dayItems.length > 0) {
                         let dayTotal = dayItems.reduce((sum, item) => sum + item.twd, 0);
-                        html += `<div class="mb-2"><h4 class="text-[11px] font-black opacity-30 mb-2 uppercase tracking-widest">Day ${dates[day].d} (${dates[day].full}) - Total: NT$ ${dayTotal.toLocaleString()}</h4>`;
-                        dayItems.forEach(p => { html += `<div class="glass-card soft-shadow flex justify-between items-center py-4 mb-2"><div><span class="category-tag !bg-[#f7f7f7] mr-2">${p.cat}</span><span class="text-sm font-bold">${p.loc}</span></div><p class="font-bold text-sm">NT$ ${p.twd.toLocaleString()}</p></div>`; });
+                        html += `<div class="mb-2"><h4 class="text-[11px] font-black opacity-30 mb-2 uppercase tracking-widest">Day ${dates[day].d} (${dates[day].full}) - Total: NT$ ${Math.round(dayTotal).toLocaleString()}</h4>`;
+                        dayItems.forEach(p => { html += `<div class="glass-card soft-shadow flex justify-between items-center py-4 mb-2"><div><span class="category-tag !bg-[#f7f7f7] mr-2">${p.cat}</span><span class="text-sm font-bold">${p.loc}</span></div><p class="font-bold text-sm">NT$ ${Math.round(p.twd).toLocaleString()}</p></div>`; });
                         html += `</div>`;
                     }
                 });
@@ -255,16 +264,16 @@
                 });
                 categories.forEach(c => {
                     if(catStats[c].total > 0) {
-                        html += `<div class="mb-2"><h4 class="text-[11px] font-black opacity-30 mb-2 uppercase tracking-widest">${c} 總支出 - Total: NT$ ${catStats[c].total.toLocaleString()}</h4>`;
-                        catStats[c].items.forEach(item => { html += `<div class="glass-card soft-shadow flex justify-between items-center py-4 mb-2"><div><span class="text-[9px] opacity-40 mr-2">DAY ${item.dayLabel}</span><span class="text-sm font-bold">${item.loc}</span></div><p class="font-bold text-sm">NT$ ${item.twd.toLocaleString()}</p></div>`; });
+                        html += `<div class="mb-2"><h4 class="text-[11px] font-black opacity-30 mb-2 uppercase tracking-widest">${c} 總支出 - Total: NT$ ${Math.round(catStats[c].total).toLocaleString()}</h4>`;
+                        catStats[c].items.forEach(item => { html += `<div class="glass-card soft-shadow flex justify-between items-center py-4 mb-2"><div><span class="text-[9px] opacity-40 mr-2">DAY ${item.dayLabel}</span><span class="text-sm font-bold">${item.loc}</span></div><p class="font-bold text-sm">NT$ ${Math.round(item.twd).toLocaleString()}</p></div>`; });
                         html += `</div>`;
                     }
                 });
             }
 
             Object.values(plans).flat().forEach(p => total += (p.twd || 0));
-            el('totalCostDisplay').innerText = `NT$ ${total.toLocaleString()}`;
-            el('dashTotalExp').innerText = `NT$ ${total.toLocaleString()}`;
+            el('totalCostDisplay').innerText = `NT$ ${Math.round(total).toLocaleString()}`;
+            el('dashTotalExp').innerText = `NT$ ${Math.round(total).toLocaleString()}`;
             list.innerHTML = html || '<p class="text-center opacity-20 py-10">尚無紀錄</p>';
         }
 
