@@ -14,14 +14,15 @@
             --sky-blue: #95b1ee;
             --light-green: #e7f1a8;
             --text-grey: #707070;
+            --light-grey: #f1f1f1;
         }
         body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg-page); color: var(--primary-blue); margin: 0; padding-bottom: 120px; overflow-x: hidden; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .soft-shadow { box-shadow: 0 10px 30px rgba(54, 76, 132, 0.04); }
         .glass-card { background: white; border-radius: 28px; padding: 24px; border: 1px solid rgba(255,255,255,0.8); }
         .itinerary-card { background: white; border-radius: 28px; padding: 24px; min-height: 110px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
-        .date-card { width: 66px; height: 88px; border-radius: 20px; transition: 0.3s; background: white; flex-shrink: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.5; margin: 0 6px; }
-        .date-card.active { background-color: var(--light-green) !important; opacity: 1; box-shadow: 0 8px 15px rgba(231, 241, 168, 0.4); transform: scale(1.05); }
+        .date-card { width: 66px; height: 88px; border-radius: 20px; transition: 0.3s; background: white; flex-shrink: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.5; margin: 0 6px; border: 1px solid rgba(0,0,0,0.02); }
+        .date-card.active { background-color: var(--light-green) !important; opacity: 1; box-shadow: 0 8px 15px rgba(231, 241, 168, 0.4); transform: scale(1.05); border: none; }
         .nav-btn { color: #CCCCCC; text-align: center; font-size: 11px; flex: 1; border: none; background: none; outline: none; transition: 0.3s; }
         .nav-btn.active { color: var(--primary-blue) !important; font-weight: bold; }
         .category-tag { font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 8px; background: #f1f1f1; color: var(--primary-blue); }
@@ -55,11 +56,16 @@
                 <div class="glass-card soft-shadow">
                     <h3 class="font-bold text-sm mb-4"><i class="fas fa-clipboard-check mr-2 text-[var(--sky-blue)]"></i>最後檢查</h3>
                     <div class="check-item"><i class="far fa-check-circle"></i>護照 (確認效期6個月以上)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>身分證、簽證、入境申請 (VJW)</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>身分證、簽證</div>
                     <div class="check-item"><i class="far fa-check-circle"></i>錢包 (信用卡、台幣、外幣)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>手機、相機、行動電源、電池</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>轉接頭、充電線、常備藥、保健品</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>飯店預訂單、旅遊行程票券、鑰匙</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>手機、相機</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>行動電源、電池 (隨身禁止托運)</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>萬用轉接頭、充電線</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>個人藥品、常備藥、保健品</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>眼鏡/隱形眼鏡、藥水</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>飯店預訂單、旅遊行程票券</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>鑰匙 (家裡、汽車)</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>入境申請 (VJW)</div>
                 </div>
 
                 <div class="glass-card soft-shadow flex justify-around items-center">
@@ -81,7 +87,7 @@
             </div>
 
             <h2 id="itiDateTitle" class="text-2xl font-bold italic mb-5 px-1">日期</h2>
-            <div id="planList" class="flex flex-col gap-3"></div>
+            <div id="planList" class="flex flex-col gap-4"></div>
         </div>
 
         <div id="expenseSection" class="hidden">
@@ -106,17 +112,17 @@
     <script>
         const plans = {
             0: [
-                {time:'21:30', cat:'🚗 移動', loc:'太平🔜桃園', desc:'', map:'', transit:'🚗2hr', twd:0},
-                {time:'23:00', cat:'⛱ 景點', loc:'桃園機場', desc:'', map:'', twd:1500}
+                {time:'21:30', cat:'🚗 移動', loc:'太平🔜桃園', desc:'台中-桃園 (約2小時)', map:'', transit:'🚗2hr', twd:0},
+                {time:'23:00', cat:'🚗 移動', loc:'桃園停車🔜機場', desc:'', map:'', twd:1500}
             ],
             1: [
-                {time:'02:30', cat:'🚗 移動', loc:'桃園🔜成田', desc:'', map:'', transit:'✈️4hr', twd:9980},
+                {time:'02:30', cat:'🚗 移動', loc:'桃園🔜成田', desc:'MM620 (02:30-06:30)', map:'', transit:'✈️4hr', twd:9980},
                 {time:'06:30', cat:'⛱ 景點', loc:'成田機場', desc:'', map:'', twd:0},
-                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺朝 (Access特急)', desc:'1. 認準「1 號月台」\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'https://maps.app.goo.gl/xVV5icwFdJJ9A8pVA', transit:'🚇1hr30min', twd:275.1},
+                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準「1 號月台」\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'https://maps.app.goo.gl/xVV5icwFdJJ9A8pVA', transit:'🚇1hr30min', twd:275.1},
                 {time:'09:00', cat:'⛱ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放', desc:'寄放行李 9:00-17:00', map:'', twd:168},
                 {time:'09:10', cat:'⛱ 景點', loc:'淺草寺 雷門', desc:'', map:'', twd:0},
-                {time:'10:00', cat:'🧁 吃喝', loc:'Asakusa Unana', desc:'09:30–17:30', map:'https://maps.app.goo.gl/W6KkrCGFHDS9BiYh9', twd:0},
-                {time:'10:05', cat:'🧁 吃喝', loc:'Ginza Brazil', desc:'09:00–15:00', map:'https://maps.app.goo.gl/W6KkrCGFHDS9BiYh9', twd:0},
+                {time:'10:00', cat:'🧁 吃喝', loc:'Asakusa Unana', desc:'鰻魚料理餐廳 (09:30–17:30)', map:'https://maps.app.goo.gl/zy21byNUzD7h95fP8', twd:0},
+                {time:'10:05', cat:'🧁 吃喝', loc:'Ginza Brazil', desc:'(09:00–15:00)', map:'https://maps.app.goo.gl/W6KkrCGFHDS9BiYh9', twd:0},
                 {time:'10:10', cat:'🧁 吃喝', loc:'淺草花月堂菠蘿麵包', desc:'', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
                 {time:'10:15', cat:'🧁 吃喝', loc:'炸饅頭 / 人型餅', desc:'仲見世商店街', map:'https://maps.app.goo.gl/R5cXDP9FrmHijedW8', twd:0},
                 {time:'10:20', cat:'🧁 吃喝', loc:'仲見世商店街', map:'https://maps.app.goo.gl/5ABPjydwkuMk6MQJ7', twd:0},
@@ -128,21 +134,24 @@
                 {time:'13:30', cat:'🧁 吃喝', loc:'牛骨拉麺 磯川 上野店', map:'https://maps.app.goo.gl/TzH63rWZojJ9Zyyf6', twd:0},
                 {time:'15:30', cat:'🚗 移動', loc:'取行李', desc:'', map:'https://maps.app.goo.gl/xwPmjibhohSEV3MB6', transit:'🚇17min', twd:0},
                 {time:'16:00', cat:'⛱ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放 (1)', desc:'', map:'', twd:0},
-                {time:'16:10', cat:'🚗 移動', loc:'拿行李🔜民宿', desc:'路線1走到淺草地鐵: https://maps.app.goo.gl/ZFLvvAyJ5TfvMqEQ7\n路線2搭淺草線: https://maps.app.goo.gl/q2VdxRt1QxQ5UhFS6', map:'https://maps.app.goo.gl/ZFLvvAyJ5TfvMqEQ7', transit:'🚇15min', twd:0},
+                {time:'16:10', cat:'🚗 移動', loc:'拿行李🔜民宿', desc:'路線1走到淺草地鐵\n路線2搭淺草線', map:'https://maps.app.goo.gl/ZFLvvAyJ5TfvMqEQ7', transit:'🚇15min', twd:0},
                 {time:'16:35', cat:'🏠 住宿', loc:'淺草住宿5/22-5/24', map:'https://maps.app.goo.gl/1TCiSAEcxVZUD4fBA', twd:3300},
                 {time:'18:00', cat:'🚗 移動', loc:'前往銀座', desc:'', map:'https://maps.app.goo.gl/A1Ztf9nJ4Y7zqwfb9', transit:'🚇34min', twd:0},
-                {time:'19:00', cat:'🧁 吃喝', loc:'銀座 篝', desc:'銀座 篝 大手町店 / 本店', map:'', twd:1386},
+                {time:'19:00', cat:'🧁 吃喝', loc:'銀座 篝', desc:'銀座 篝 大手町店 / 本店', map:'', twd:0},
                 {time:'20:00', cat:'🧁 吃喝', loc:'PATISSERIE TEN&', desc:'', map:'', twd:0}
             ],
             2: [
                 {time:'10:00', cat:'🚗 移動', loc:'淺草🔜豪德寺', desc:'', map:'https://maps.app.goo.gl/5juqk4LY8LYABHQt8', transit:'🚇1hr30min', twd:0},
                 {time:'11:30', cat:'⛱ 景點', loc:'豪德寺', desc:'11:30-12:30', map:'', twd:0},
                 {time:'13:00', cat:'🚗 移動', loc:'豪德寺→原宿', desc:'', map:'https://maps.app.goo.gl/uF4bt2EVw76amgJA6', transit:'🚇30min', twd:0},
-                {time:'13:05', cat:'🧁 吃喝', loc:'Negishi ねぎし原宿', desc:'牛舌餐廳', map:'https://maps.app.goo.gl/tZ9Xk2v55VDh6Z6U9', twd:0},
+                {time:'13:05', cat:'🧁 吃喝', loc:'Negishi ねぎし原宿', desc:'牛舌餐廳 (13:00-14:00)', map:'https://maps.app.goo.gl/tZ9Xk2v55VDh6Z6U9', twd:0},
                 {time:'14:00', cat:'⛱ 景點', loc:'吉伊卡哇麵包店', desc:'14:00-15:00', map:'https://maps.app.goo.gl/H5US5gVh522uM3fi8', twd:0},
                 {time:'15:30', cat:'🚗 移動', loc:'原宿→東京鐵塔', desc:'', map:'https://maps.app.goo.gl/y3YbfEaqopmBxAQ16', transit:'🚇30min', twd:0},
                 {time:'16:00', cat:'⛱ 景點', loc:'東京鐵塔', desc:'16:00-17:00', map:'', twd:0},
-                {time:'16:30', cat:'⛱ 景點', loc:'東京鐵塔 711', map:'https://maps.app.goo.gl/jHQKJUjmwck1ocbq8', twd:0}
+                {time:'16:30', cat:'⛱ 景點', loc:'東京鐵塔 711', map:'https://maps.app.goo.gl/jHQKJUjmwck1ocbq8', twd:0},
+                {time:'20:00', cat:'🧁 吃喝', loc:'銀座 篝', desc:'銀座 篝 大手町店 / 本店', map:'', twd:1386},
+                {time:'21:00', cat:'🧁 吃喝', loc:'いづも 池袋 居酒屋', desc:'', map:'', twd:0},
+                {time:'21:30', cat:'🧁 吃喝', loc:'PATISSERIE TEN&', desc:'', map:'', twd:0}
             ],
             3: [
                 {time:'08:30', cat:'🚗 移動', loc:'退房🔜寄放行李', desc:'', map:'https://maps.app.goo.gl/bTjqDyxdj7Sak2EJ9', transit:'🚇45min', twd:0},
@@ -157,16 +166,16 @@
                 {time:'14:00', cat:'🚗 移動', loc:'包車到熱海', desc:'', map:'', transit:'🚗2hr', twd:1875},
                 {time:'15:30', cat:'⛱ 景點', loc:'熱海', desc:'', map:'', twd:0},
                 {time:'16:00', cat:'🧁 吃喝', loc:'熱海布丁 1號本店', desc:'', map:'', twd:0},
-                {time:'16:30', cat:'⛱ 景點', loc:'熱海陽光海灘', desc:'', map:'', twd:0},
+                {time:'16:30', cat:'⛱ 景點', loc:'熱海陽光海灘', desc:'跟安秀會合', map:'', twd:0},
                 {time:'21:00', cat:'🚗 移動', loc:'前往箱根民宿', desc:'', map:'', transit:'🚗2hr', twd:0},
-                {time:'23:00', cat:'🏠 住宿', loc:'箱根住宿', map:'https://maps.app.goo.gl/hgynWtf4FTE1jf356', twd:1842}
+                {time:'23:00', cat:'🏠 住宿', loc:'箱根住宿', map:'https://maps.app.goo.gl/VcU1fL9miLtCsgwM6', twd:1842}
             ],
             4: [
-                {time:'10:00', cat:'⛱ 景點', loc:'箱根玩耍', desc:'週遊券＋車票 (10:00-17:00)', map:'', twd:1700},
-                {time:'17:46', cat:'🚗 移動', loc:'箱根🔜新宿', desc:'出發 17:46 箱根湯本\n抵達 19:26 新宿', map:'', transit:'🚇1hr30min', twd:0},
+                {time:'10:00', cat:'⛱ 景點', loc:'箱根玩耍', desc:'周遊券＋車票 (10:00-17:00)', map:'', twd:1700},
+                {time:'17:46', cat:'🚗 移動', loc:'箱根湯本🔜新宿', desc:'出發 17:46 箱根湯本\n抵達 19:26 新宿', map:'https://maps.app.goo.gl/hgynWtf4FTE1jf356', transit:'🚇1hr30min', twd:0},
                 {time:'19:26', cat:'⛱ 景點', loc:'新宿車站', desc:'', map:'', twd:0},
                 {time:'19:40', cat:'🚗 移動', loc:'豪華膠囊旅館 安心之宿 新宿站前店', desc:'拿行李', map:'', transit:'🚶🏻10min', twd:0},
-                {time:'20:00', cat:'⛱ 景點', loc:'豪華膠囊旅館 安心之宿 新宿站前店', desc:'', map:'', twd:0},
+                {time:'20:00', cat:'⛱ 景點', loc:'豪華膠囊旅館 安心之宿', desc:'', map:'', twd:0},
                 {time:'20:05', cat:'🚗 移動', loc:'搭計程車前往飯店', desc:'', map:'https://maps.app.goo.gl/xaFDFDXhG269UQDR8', transit:'🚗10min', twd:0},
                 {time:'20:15', cat:'🏠 住宿', loc:'新宿由緣溫泉旅館', map:'https://maps.app.goo.gl/xokUDBs16WQmymNt6', twd:2763.5}
             ],
@@ -234,7 +243,6 @@
             const dayPlans = (plans[currentDayIdx] || []).sort((a,b) => a.time.localeCompare(b.time));
             
             list.innerHTML = dayPlans.map((p) => {
-                // 如果是移動區塊，改造成輕盈過場的動線膠囊
                 if (p.cat === '🚗 移動') {
                     return `
                         <div class="flex flex-col items-center my-2 px-1 fade-in">
@@ -243,7 +251,12 @@
                                     <span class="text-[10px] font-bold text-white px-2 py-0.5 rounded-lg bg-[var(--sky-blue)] flex items-center gap-1"><i class="fas fa-clock text-[9px]"></i> ${p.transit || '移動'}</span>
                                     <span class="text-xs font-bold text-[var(--primary-blue)]">${p.loc}</span>
                                 </div>
-                                ${p.map ? `<button onclick="window.open('${p.map}')" class="text-[var(--primary-blue)] p-1 hover:scale-110 active:scale-95 transition-transform"><i class="fas fa-location-arrow text-sm"></i></button>` : ''}
+                                ${p.map ? `
+                                <button onclick="window.open('${p.map}')" class="text-[var(--primary-blue)] p-1 hover:scale-110 active:scale-95 transition-transform flex items-center justify-center" title="導航">
+                                    <svg class="w-4 h-4 text-[var(--primary-blue)]" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M22 2L2 10.5L11.5 13L14 22.5L22 2Z"/>
+                                    </svg>
+                                </button>` : ''}
                             </div>
                             ${p.desc ? `<p class="text-[11px] text-[var(--text-grey)] text-left mt-1.5 px-4 leading-relaxed whitespace-pre-line w-full opacity-80">${p.desc}</p>` : ''}
                             ${p.twd > 0 ? `<p class="text-[10px] font-bold text-[var(--sky-blue)] mt-1 w-full px-4 text-left">台幣支出: NT$ ${Math.round(p.twd).toLocaleString()}</p>` : ''}
@@ -290,9 +303,11 @@
                 categories.forEach(c => catStats[c] = { total: 0, items: [] });
                 Object.keys(plans).forEach(day => {
                     plans[day].forEach(p => {
-                        if(p.twd > 0 && catStats[p.cat]) {
-                            catStats[p.cat].total += p.twd;
-                            catStats[p.cat].items.push({...p, dayLabel: dates[day].d});
+                        let standardCat = p.cat;
+                        if (standardCat === '🏡 住宿') standardCat = '🏠 住宿';
+                        if(p.twd > 0 && catStats[standardCat]) {
+                            catStats[standardCat].total += p.twd;
+                            catStats[standardCat].items.push({...p, dayLabel: dates[day].d});
                         }
                     });
                 });
@@ -300,10 +315,17 @@
                     if(catStats[c].total > 0) {
                         html += `<div class="mb-2"><h4 class="text-[11px] font-black opacity-30 mb-2 uppercase tracking-widest">${c} 總支出 - Total: NT$ ${Math.round(catStats[c].total).toLocaleString()}</h4>`;
                         catStats[c].items.forEach(item => { html += `<div class="glass-card soft-shadow flex justify-between items-center py-4 mb-2"><div><span class="text-[9px] opacity-40 mr-2">DAY ${item.dayLabel}</span><span class="text-sm font-bold">${item.loc}</span></div><p class="font-bold text-sm">NT$ ${Math.round(item.twd).toLocaleString()}</p></div>`; });
-                        html += ` = ''; };
-
-            setDay(1); switchTab('dash');
+                        html += `</div>`;
+                    }
+                });
+            }
+            Object.values(plans).flat().forEach(p => total += (p.twd || 0));
+            el('totalCostDisplay').innerText = `NT$ ${Math.round(total).toLocaleString()}`;
+            el('dashTotalExp').innerText = `NT$ ${Math.round(total).toLocaleString()}`;
+            list.innerHTML = html || '<p class="text-center opacity-20 py-10">尚無紀錄</p>';
         }
+
+        setDay(1); switchTab('dash');
     </script>
 </body>
 </html>
