@@ -59,11 +59,16 @@
                 <div class="glass-card soft-shadow">
                     <h3 class="font-bold text-sm mb-4"><i class="fas fa-clipboard-check mr-2 text-[var(--sky-blue)]"></i>最後檢查</h3>
                     <div class="check-item"><i class="far fa-check-circle"></i>護照 (確認效期6個月以上)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>身分證、簽證、入境申請 (VJW)</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>身分證、簽證</div>
                     <div class="check-item"><i class="far fa-check-circle"></i>錢包 (信用卡、台幣、外幣)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>手機、相機、行動電源、電池</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>轉接頭、充電線、常備藥、保健品</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>飯店預訂單、旅遊行程票券、鑰匙</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>手機、相機</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>行動電源、電池 (隨身禁止托運)</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>萬用轉接頭、充電線</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>個人藥品、常備藥、保健品</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>眼鏡/隱形眼鏡、藥水</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>飯店預訂單、旅遊行程票券</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>鑰匙 (家裡、汽車)</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>入境申請 (VJW)</div>
                 </div>
 
                 <div class="glass-card soft-shadow flex justify-around items-center">
@@ -111,24 +116,21 @@
         const plans = {
             0: [
                 {time:'21:30', cat:'🚗 移動', loc:'太平🔜桃園', desc:'台中-桃園 (約2小時)', map:'', transit:'🚗2hr', twd:0},
-                {time:'23:00', cat:'🚗 移動', loc:'桃園停車🔜機場', desc:'', map:'', twd:1500}
+                {time:'23:00', cat:'⛱ 景點', loc:'桃園機場', desc:'', map:'', twd:1500}
             ],
             1: [
                 {time:'02:30', cat:'🚗 移動', loc:'桃園🔜成田', desc:'MM620 (02:30-06:30)', map:'', transit:'✈️4hr', twd:9980},
                 {time:'06:30', cat:'⛱ 景點', loc:'成田機場', desc:'', map:'', twd:0},
                 {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準「1 號月台」\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'https://maps.app.goo.gl/JabTTFV3WzjyRVEP9', transit:'🚇1hr30min', twd:275.1},
-                {time:'09:00', cat:'⛱ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放', desc:'寄放行李 9:00-17:00', map:'', twd:168},
+                {time:'09:00', cat:'⛱ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放', desc:'寄放行李 9:00-17:00', map:'https://maps.app.goo.gl/5ZEZApc16Z2nbVHJ8', twd:168},
                 {time:'09:10', cat:'⛱ 景點', loc:'淺草寺 雷門', desc:'', map:'', twd:0},
                 {time:'10:05', cat:'🧁 吃喝', loc:'Ginza Brazil', desc:'(09:00–15:00)', map:'https://maps.app.goo.gl/W6KkrCGFHDS9BiYh9', twd:0},
                 {time:'10:10', cat:'🧁 吃喝', loc:'淺草花月堂菠蘿麵包', desc:'', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
                 {time:'10:15', cat:'🧁 吃喝', loc:'炸饅頭 / 人型餅', desc:'仲見世商店街', map:'https://maps.app.goo.gl/R5cXDP9FrmHijedW8', twd:0},
-                {time:'10:20', cat:'🧁 吃喝', loc:'仲見世商店街', map:'https://maps.app.goo.gl/5ABPjydwkuMk6MQJ7', twd:0},
+                {time:'10:20', cat:'🧁 吃喝', loc:'仲見世商店街', map:'https://maps.app.goo.gl/dzqeQVb2H78oKb1f6', twd:0},
                 {time:'10:30', cat:'🚗 移動', loc:'前往上野', desc:'', map:'https://maps.app.goo.gl/LMvQHcenjE3DFLgz6', transit:'🚇15min', twd:0},
-                {time:'11:00', cat:'🧁 吃喝', loc:'阿美橫町', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
-                {time:'11:05', cat:'🧁 吃喝', loc:'利久牛舌', desc:'建議提早排隊', map:'https://maps.app.goo.gl/BJ9YyBNHvytJXjKD7', twd:0},
-                {time:'11:10', cat:'🧁 吃喝', loc:'拉麵鴨 to Negi', map:'https://maps.app.goo.gl/7iP5LBys4yAGgkRW7', twd:0},
                 {time:'12:30', cat:'🧁 吃喝', loc:'淺草牛光', desc:'', map:'https://maps.app.goo.gl/ipKDeL4zoDTErGk77', twd:0},
-                {time:'13:30', cat:'🧁 吃喝', loc:'牛骨拉麺 磯川 上野店', map:'https://maps.app.goo.gl/TzH63rWZojJ9Zyyf6', twd:0},
+                {time:'14:00', cat:'🧁 吃喝', loc:'阿美橫町', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
                 {time:'15:30', cat:'🚗 移動', loc:'取行李', desc:'', map:'https://maps.app.goo.gl/xwPmjibhohSEV3MB6', transit:'🚇17min', twd:0},
                 {time:'16:00', cat:'⛱ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放 (1)', desc:'', map:'', twd:0},
                 {time:'16:10', cat:'🚗 移動', loc:'拿行李🔜民宿', desc:'路線1走到淺草地鐵\n路線2搭淺草線', map:'https://maps.app.goo.gl/ZFLvvAyJ5TfvMqEQ7', transit:'🚇15min', twd:0},
@@ -145,11 +147,8 @@
                 {time:'14:00', cat:'⛱ 景點', loc:'吉伊卡哇麵包店', desc:'14:00-15:00', map:'https://maps.app.goo.gl/H5US5gVh522uM3fi8', twd:0},
                 {time:'15:30', cat:'🚗 移動', loc:'原宿→東京鐵塔', desc:'', map:'https://maps.app.goo.gl/y3YbfEaqopmBxAQ16', transit:'🚇30min', twd:0},
                 {time:'16:00', cat:'⛱ 景點', loc:'東京鐵塔 711', map:'https://maps.app.goo.gl/jHQKJUjmwck1ocbq8', twd:0},
-                {time:'19:00', cat:'🏖️ 景點', loc:'寶可夢中心東京店DX', desc:'營業時間 10:30–21:00', map:'https://maps.app.goo.gl/MTPZ8nxkCaxQ65KV6', twd:0},
-                {time:'19:30', cat:'🏖️ 景點', loc:'逛藥妝唐吉訶德', desc:'', map:'https://maps.app.goo.gl/oZBR9Bf6vQMFhXzF7', twd:0},
-                {time:'20:00', cat:'🧁 吃喝', loc:'銀座 篝', desc:'銀座 篝 大手町店 / 本店', map:'', twd:1386},
-                {time:'21:00', cat:'🧁 吃喝', loc:'いづも 池袋 居酒屋', desc:'', map:'', twd:0},
-                {time:'21:30', cat:'🧁 吃喝', loc:'PATISSERIE TEN&', desc:'', map:'', twd:0}
+                {time:'19:00', cat:'⛱ 景點', loc:'寶可夢中心東京店DX', desc:'營業時間 10:30–21:00', map:'https://maps.app.goo.gl/MTPZ8nxkCaxQ65KV6', twd:0},
+                {time:'19:30', cat:'⛱ 景點', loc:'逛藥妝唐吉訶德', desc:'', map:'https://maps.app.goo.gl/oZBR9Bf6vQMFhXzF7', twd:0}
             ],
             3: [
                 {time:'08:30', cat:'🚗 移動', loc:'退房🔜寄放行李', desc:'', map:'https://maps.app.goo.gl/bTjqDyxdj7Sak2EJ9', transit:'🚇45min', twd:0},
@@ -164,7 +163,7 @@
                 {time:'14:00', cat:'🚗 移動', loc:'包車到熱海', desc:'', map:'', transit:'🚗2hr', twd:1875},
                 {time:'15:30', cat:'⛱ 景點', loc:'熱海', desc:'', map:'', twd:0},
                 {time:'16:00', cat:'🧁 吃喝', loc:'熱海布丁 1號本店', desc:'', map:'', twd:0},
-                {time:'16:30', cat:'⛱ 景點', loc:'熱海陽光海灘', desc:'', map:'', twd:0},
+                {time:'16:30', cat:'⛱ 景點', loc:'熱海陽光海灘', desc:'跟安秀會合', map:'', twd:0},
                 {time:'21:00', cat:'🚗 移動', loc:'前往箱根民宿', desc:'', map:'', transit:'🚗2hr', twd:0},
                 {time:'23:00', cat:'🏠 住宿', loc:'箱根住宿', map:'https://maps.app.goo.gl/VcU1fL9miLtCsgwM6', twd:1842}
             ],
@@ -322,13 +321,14 @@
                     }
                 });
             } else {
-                const categories = ['🚗 移動', '🧁 吃喝', '🛍️ 購物', '🏖️ 景點', '🏠 住宿'];
+                const categories = ['🚗 移動', '🧁 吃喝', '🛍️ 購物', '⛱ 景點', '🏠 住宿'];
                 const catStats = {};
                 categories.forEach(c => catStats[c] = { total: 0, items: [] });
                 Object.keys(plans).forEach(day => {
                     plans[day].forEach(p => {
                         let standardCat = p.cat;
                         if (standardCat === '🏡 住宿') standardCat = '🏠 住宿';
+                        if (standardCat === '⛱ 景點') standardCat = '⛱ 景點';
                         if(p.twd > 0 && catStats[standardCat]) {
                             catStats[standardCat].total += p.twd;
                             catStats[standardCat].items.push({...p, dayLabel: dates[day].d});
