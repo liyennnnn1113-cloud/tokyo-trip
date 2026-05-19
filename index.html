@@ -28,6 +28,9 @@
         .category-tag { font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 8px; background: #f1f1f1; color: var(--primary-blue); }
         .check-item { display: flex; align-items: center; gap: 12px; font-size: 14px; margin-bottom: 12px; color: var(--text-grey); }
         .check-item i { color: var(--sky-blue); font-size: 16px; }
+        .embedded-box { background-color: #fcfbf7; border: 1px dashed rgba(54, 76, 132, 0.15); border-radius: 16px; padding: 14px; margin-top: 10px; }
+        .clickable-link { text-decoration: underline; color: #4a6fa5; font-weight: 500; cursor: pointer; }
+        .clickable-link:active { opacity: 0.6; }
         .hidden { display: none !important; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -56,16 +59,11 @@
                 <div class="glass-card soft-shadow">
                     <h3 class="font-bold text-sm mb-4"><i class="fas fa-clipboard-check mr-2 text-[var(--sky-blue)]"></i>最後檢查</h3>
                     <div class="check-item"><i class="far fa-check-circle"></i>護照 (確認效期6個月以上)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>身分證、簽證</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>身分證、簽證、入境申請 (VJW)</div>
                     <div class="check-item"><i class="far fa-check-circle"></i>錢包 (信用卡、台幣、外幣)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>手機、相機</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>行動電源、電池 (隨身禁止托運)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>萬用轉接頭、充電線</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>個人藥品、常備藥、保健品</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>眼鏡/隱形眼鏡、藥水</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>飯店預訂單、旅遊行程票券</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>鑰匙 (家裡、汽車)</div>
-                    <div class="check-item"><i class="far fa-check-circle"></i>入境申請 (VJW)</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>手機、相機、行動電源、電池</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>轉接頭、充電線、常備藥、保健品</div>
+                    <div class="check-item"><i class="far fa-check-circle"></i>飯店預訂單、旅遊行程票券、鑰匙</div>
                 </div>
 
                 <div class="glass-card soft-shadow flex justify-around items-center">
@@ -118,19 +116,18 @@
             1: [
                 {time:'02:30', cat:'🚗 移動', loc:'桃園🔜成田', desc:'MM620 (02:30-06:30)', map:'', transit:'✈️4hr', twd:9980},
                 {time:'06:30', cat:'⛱ 景點', loc:'成田機場', desc:'', map:'', twd:0},
-                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準「1 號月台」\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'https://maps.app.goo.gl/xVV5icwFdJJ9A8pVA', transit:'🚇1hr30min', twd:275.1},
+                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準「1 號月台」\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'https://maps.app.goo.gl/JabTTFV3WzjyRVEP9', transit:'🚇1hr30min', twd:275.1},
                 {time:'09:00', cat:'⛱ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放', desc:'寄放行李 9:00-17:00', map:'', twd:168},
                 {time:'09:10', cat:'⛱ 景點', loc:'淺草寺 雷門', desc:'', map:'', twd:0},
-                {time:'10:00', cat:'🧁 吃喝', loc:'Asakusa Unana', desc:'鰻魚料理餐廳 (09:30–17:30)', map:'https://maps.app.goo.gl/zy21byNUzD7h95fP8', twd:0},
                 {time:'10:05', cat:'🧁 吃喝', loc:'Ginza Brazil', desc:'(09:00–15:00)', map:'https://maps.app.goo.gl/W6KkrCGFHDS9BiYh9', twd:0},
                 {time:'10:10', cat:'🧁 吃喝', loc:'淺草花月堂菠蘿麵包', desc:'', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
                 {time:'10:15', cat:'🧁 吃喝', loc:'炸饅頭 / 人型餅', desc:'仲見世商店街', map:'https://maps.app.goo.gl/R5cXDP9FrmHijedW8', twd:0},
                 {time:'10:20', cat:'🧁 吃喝', loc:'仲見世商店街', map:'https://maps.app.goo.gl/5ABPjydwkuMk6MQJ7', twd:0},
-                {time:'10:25', cat:'🧁 吃喝', loc:'淺草牛光', desc:'', map:'https://maps.app.goo.gl/ipKDeL4zoDTErGk77', twd:0},
                 {time:'10:30', cat:'🚗 移動', loc:'前往上野', desc:'', map:'https://maps.app.goo.gl/LMvQHcenjE3DFLgz6', transit:'🚇15min', twd:0},
                 {time:'11:00', cat:'🧁 吃喝', loc:'阿美橫町', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
                 {time:'11:05', cat:'🧁 吃喝', loc:'利久牛舌', desc:'建議提早排隊', map:'https://maps.app.goo.gl/BJ9YyBNHvytJXjKD7', twd:0},
                 {time:'11:10', cat:'🧁 吃喝', loc:'拉麵鴨 to Negi', map:'https://maps.app.goo.gl/7iP5LBys4yAGgkRW7', twd:0},
+                {time:'12:30', cat:'🧁 吃喝', loc:'淺草牛光', desc:'', map:'https://maps.app.goo.gl/ipKDeL4zoDTErGk77', twd:0},
                 {time:'13:30', cat:'🧁 吃喝', loc:'牛骨拉麺 磯川 上野店', map:'https://maps.app.goo.gl/TzH63rWZojJ9Zyyf6', twd:0},
                 {time:'15:30', cat:'🚗 移動', loc:'取行李', desc:'', map:'https://maps.app.goo.gl/xwPmjibhohSEV3MB6', transit:'🚇17min', twd:0},
                 {time:'16:00', cat:'⛱ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放 (1)', desc:'', map:'', twd:0},
@@ -147,26 +144,27 @@
                 {time:'13:05', cat:'🧁 吃喝', loc:'Negishi ねぎし原宿', desc:'牛舌餐廳 (13:00-14:00)', map:'https://maps.app.goo.gl/tZ9Xk2v55VDh6Z6U9', twd:0},
                 {time:'14:00', cat:'⛱ 景點', loc:'吉伊卡哇麵包店', desc:'14:00-15:00', map:'https://maps.app.goo.gl/H5US5gVh522uM3fi8', twd:0},
                 {time:'15:30', cat:'🚗 移動', loc:'原宿→東京鐵塔', desc:'', map:'https://maps.app.goo.gl/y3YbfEaqopmBxAQ16', transit:'🚇30min', twd:0},
-                {time:'16:00', cat:'⛱ 景點', loc:'東京鐵塔', desc:'16:00-17:00', map:'', twd:0},
-                {time:'16:30', cat:'⛱ 景點', loc:'東京鐵塔 711', map:'https://maps.app.goo.gl/jHQKJUjmwck1ocbq8', twd:0},
+                {time:'16:00', cat:'⛱ 景點', loc:'東京鐵塔 711', map:'https://maps.app.goo.gl/jHQKJUjmwck1ocbq8', twd:0},
+                {time:'19:00', cat:'🏖️ 景點', loc:'寶可夢中心東京店DX', desc:'營業時間 10:30–21:00', map:'https://maps.app.goo.gl/MTPZ8nxkCaxQ65KV6', twd:0},
+                {time:'19:30', cat:'🏖️ 景點', loc:'逛藥妝唐吉訶德', desc:'', map:'https://maps.app.goo.gl/oZBR9Bf6vQMFhXzF7', twd:0},
                 {time:'20:00', cat:'🧁 吃喝', loc:'銀座 篝', desc:'銀座 篝 大手町店 / 本店', map:'', twd:1386},
                 {time:'21:00', cat:'🧁 吃喝', loc:'いづも 池袋 居酒屋', desc:'', map:'', twd:0},
                 {time:'21:30', cat:'🧁 吃喝', loc:'PATISSERIE TEN&', desc:'', map:'', twd:0}
             ],
             3: [
                 {time:'08:30', cat:'🚗 移動', loc:'退房🔜寄放行李', desc:'', map:'https://maps.app.goo.gl/bTjqDyxdj7Sak2EJ9', transit:'🚇45min', twd:0},
-                {time:'09:30', cat:'⛱ 景點', loc:'豪華膠囊旅館 安心之宿 新宿站前店 行李寄放', desc:'5/24 9:00-5/25 22:00', map:'', twd:840},
-                {time:'09:35', cat:'🧁 吃喝', loc:'買早餐集合', desc:'9:30-10:00 麥當勞 三明治 漢堡', map:'', twd:0},
+                {time:'09:30', cat:'⛱ 景點', loc:'豪華膠囊旅館 安心之宿 新宿站前店 行李寄放', desc:'5/24 9:00-5/25 22:00\n豪華膠囊旅館 安心之宿 新宿站前店', map:'', twd:840},
+                {time:'09:35', cat:'🧁 吃喝', loc:'買早餐集合', desc:'9:30-10:00 集合', map:'', embedType:'breakfast', twd:0},
                 {time:'10:00', cat:'🚗 移動', loc:'新宿🔜鎌倉', desc:'10:20上車 🔜 11:29抵達片瀨江之島', map:'https://maps.app.goo.gl/MprDGgMmAzvkze5U8', transit:'🚇1hr9min', twd:0},
                 {time:'11:30', cat:'⛱ 景點', loc:'片瀨江之島', desc:'', map:'', twd:0},
                 {time:'11:35', cat:'🚗 移動', loc:'片瀨江之島→平交道', desc:'', map:'https://maps.app.goo.gl/cCgG3MnWoCeYCeZBA', transit:'🚇13min', twd:0},
                 {time:'12:00', cat:'⛱ 景點', loc:'鎌倉高校前（平交道）', map:'https://maps.app.goo.gl/8FGwRf9Z56ZHW8Rj7', twd:0},
                 {time:'12:30', cat:'🚗 移動', loc:'平交道→小町通商店街', desc:'', map:'https://maps.app.goo.gl/3vi9F1ianqAe51qx8', transit:'🚇25min', twd:0},
-                {time:'13:00', cat:'🧁 吃喝', loc:'小町通商店街', desc:'吃午餐：咖哩麵包 大佛燒 鎌倉釜飯', map:'', twd:0},
+                {time:'13:00', cat:'🧁 吃喝', loc:'小町通商店街', desc:'吃午餐精選', map:'', embedType:'lunch', twd:0},
                 {time:'14:00', cat:'🚗 移動', loc:'包車到熱海', desc:'', map:'', transit:'🚗2hr', twd:1875},
                 {time:'15:30', cat:'⛱ 景點', loc:'熱海', desc:'', map:'', twd:0},
                 {time:'16:00', cat:'🧁 吃喝', loc:'熱海布丁 1號本店', desc:'', map:'', twd:0},
-                {time:'16:30', cat:'⛱ 景點', loc:'熱海陽光海灘', desc:'跟安秀會合', map:'', twd:0},
+                {time:'16:30', cat:'⛱ 景點', loc:'熱海陽光海灘', desc:'', map:'', twd:0},
                 {time:'21:00', cat:'🚗 移動', loc:'前往箱根民宿', desc:'', map:'', transit:'🚗2hr', twd:0},
                 {time:'23:00', cat:'🏠 住宿', loc:'箱根住宿', map:'https://maps.app.goo.gl/VcU1fL9miLtCsgwM6', twd:1842}
             ],
@@ -263,6 +261,31 @@
                         </div>
                     `;
                 } else {
+                    let embedHtml = '';
+                    if (p.embedType === 'breakfast') {
+                        embedHtml = `
+                            <div class="embedded-box">
+                                <p class="text-[11px] font-bold opacity-60 mb-2"><i class="fas fa-utensils mr-1"></i> 早餐選項點擊導航：</p>
+                                <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs">
+                                    <span class="clickable-link" onclick="window.open('https://maps.app.goo.gl/rhoFmkeJiB8Ly3Yi9')">麥當勞</span>
+                                    <span class="clickable-link" onclick="window.open('https://maps.app.goo.gl/zgvjR7BpzaKJpJQJA')">三明治</span>
+                                    <span class="clickable-link" onclick="window.open('https://maps.app.goo.gl/LY4ZVEjtGLwkygAd7')">漢堡</span>
+                                </div>
+                            </div>
+                        `;
+                    } else if (p.embedType === 'lunch') {
+                        embedHtml = `
+                            <div class="embedded-box">
+                                <p class="text-[11px] font-bold opacity-60 mb-2"><i class="fas fa-store mr-1"></i> 小町通必吃午餐導航：</p>
+                                <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs">
+                                    <span class="clickable-link" onclick="window.open('https://maps.app.goo.gl/u7zY5TE8iL6g12N59')">咖哩麵包</span>
+                                    <span class="clickable-link" onclick="window.open('https://maps.app.goo.gl/4g8KQxtNZu7F2y5eA')">大佛燒</span>
+                                    <span class="clickable-link" onclick="window.open('https://maps.app.goo.gl/NMNumbiLgoEt2QPLA')">鎌倉釜飯</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+
                     return `
                         <div class="itinerary-card soft-shadow fade-in">
                             <div>
@@ -272,6 +295,7 @@
                                 </div>
                                 <h3 class="font-bold text-lg mb-1 text-[var(--primary-blue)]">${p.loc}</h3>
                                 <p class="text-xs text-[var(--text-grey)] leading-relaxed whitespace-pre-line">${p.desc}</p>
+                                ${embedHtml}
                             </div>
                             ${p.twd > 0 ? `<div class="mt-4 text-[11px] font-black text-[var(--sky-blue)] flex justify-between border-t border-gray-50 pt-3"><span>台幣支出</span><span>NT$ ${Math.round(p.twd).toLocaleString()}</span></div>` : ''}
                         </div>
