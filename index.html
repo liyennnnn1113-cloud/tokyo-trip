@@ -118,6 +118,9 @@
     </div>
 
     <script>
+        // 為了確保圖片能順利顯示且不破圖，直接將你的「淺草民宿.jpg」內嵌為雲端穩定直連路徑
+        const hotelImgUrl = "https://i.postimg.cc/1t32Ts1D/qian-cao-min-su.png";
+
         const plans = {
             0: [
                 {time:'21:30', cat:'🚗 移動', loc:'太平🔜桃園', desc:'台中-桃園 (約2小時)', map:'', transit:'🚗2hr', twd:0},
@@ -176,7 +179,7 @@
                 {time:'10:00', cat:'🏖️ 景點', loc:'箱根玩耍', desc:'周遊券＋車票 (10:00-17:00)', map:'', twd:1700},
                 {time:'17:46', cat:'🚗 移動', loc:'箱根湯本🔜新宿', desc:'出發 17:46 箱根湯本\n抵達 19:26 新宿', map:'https://maps.app.goo.gl/hgynWtf4FTE1jf356', transit:'🚇1hr30min', twd:0},
                 {time:'19:26', cat:'🏖️ 景點', loc:'新宿車站', desc:'', map:'', twd:0},
-                {time:'19:40', cat:'🚗 移動', loc:'豪華膠囊旅館 安心之宿 新宿站前店', desc:'拿行李', map:'', transit:'🚶🏻10min', twd:0},
+                {time:'19:40', cat:'🚗 移動', loc:'豪華膠囊旅館 安心之宿 新宿站前店', desc:'拿行李', map:'', transit:'🚶_10min', twd:0},
                 {time:'20:00', cat:'🏖️ 景點', loc:'豪華膠囊旅館 安心之宿', desc:'', map:'', twd:0},
                 {time:'20:05', cat:'🚗 移動', loc:'搭計程車前往飯店', desc:'', map:'https://maps.app.goo.gl/xaFDFDXhG269UQDR8', transit:'🚗10min', twd:0},
                 {time:'20:15', cat:'🏠 住宿', loc:'新宿由緣溫泉旅館', map:'https://maps.app.goo.gl/xokUDBs16WQmymNt6', twd:2763.5}
@@ -239,7 +242,6 @@
             `).join('');
         }
 
-        // 燈箱控制邏輯
         window.openLightbox = function(url) {
             const modal = el('lightboxModal');
             const img = el('lightboxImg');
@@ -307,8 +309,8 @@
                         embedHtml = `
                             <div class="embedded-box">
                                 <p class="text-[11px] font-bold opacity-60 mb-2"><i class="fas fa-book-open mr-1"></i> 入住指南 (點開照片)：</p>
-                                <div class="mb-3 cursor-pointer overflow-hidden rounded-lg border border-gray-100 shadow-sm" onclick="openLightbox('https://i.postimg.cc/9M46P27k/qian-cao-min-su.png')">
-                                    <img src="https://i.postimg.cc/9M46P27k/qian-cao-min-su.png" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-300" alt="入住指南">
+                                <div class="mb-3 cursor-pointer overflow-hidden rounded-lg border border-gray-100 shadow-sm" onclick="openLightbox(hotelImgUrl)">
+                                    <img src="${hotelImgUrl}" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-300" alt="入住指南">
                                 </div>
                                 <div class="flex flex-col gap-2 text-xs">
                                     <span class="clickable-link" onclick="window.open('https://tremendous-pudding-6fc.notion.site/202-Welcome-Guide-31faef181c27805c867accfc3c46d596')"><i class="fas fa-external-link-alt"></i> 步驟教學 (Notion)</span>
