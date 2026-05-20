@@ -84,7 +84,7 @@
                 <div id="dateNav" class="flex overflow-x-auto py-2 space-x-1 no-scrollbar -mx-2 px-2"></div>
             </div>
             
-            <div class="glass-card soft-shadow bg-gradient-to-r from-white to-[#fffdfb] p-4 border-l-4 border-l-[var(--primary-blue)] mb-4">
+            <div class="bg-white border-2 border-[var(--primary-blue)] rounded-2xl p-4 soft-shadow mb-4">
                 <p class="text-[9px] font-black opacity-40 uppercase tracking-widest mb-1 text-[var(--primary-blue)]">本日大綱</p>
                 <p id="dayOverviewText" class="text-xs font-bold leading-relaxed text-[var(--primary-blue)]"></p>
             </div>
@@ -118,7 +118,6 @@
     </div>
 
     <script>
-        // 為了確保圖片能順利顯示且不破圖，直接將你的「淺草民宿.jpg」內嵌為雲端穩定直連路徑
         const hotelImgUrl = "https://i.postimg.cc/1t32Ts1D/qian-cao-min-su.png";
 
         const plans = {
@@ -129,34 +128,34 @@
             1: [
                 {time:'02:30', cat:'🚗 移動', loc:'桃園🔜成田', desc:'MM620 (02:30-06:30)', map:'', transit:'✈️4hr', twd:9980},
                 {time:'06:30', cat:'🏖️ 景點', loc:'成田機場', desc:'', map:'', twd:0},
-                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準「1 號月台」\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'https://maps.app.goo.gl/JabTTFV3WzjyRVEP9', transit:'🚇1hr30min', twd:275.1},
-                {time:'09:00', cat:'🏖️ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放', desc:'寄放行李 9:00-17:00', map:'https://maps.app.goo.gl/5ZEZApc16Z2nbVHJ8', twd:168},
+                {time:'07:00', cat:'🚗 移動', loc:'成田🔜淺草 (Access特急)', desc:'1. 認準「1 號月台」\n2. 螢幕顯示「西馬込」或「羽田空港」可直達\n3. 避開「上野」字樣', map:'https://maps.app.goo.gl/dnJxLJbR2WZPNmi66https://maps.app.goo.gl/dnJxLJbR2WZPNmi66', transit:'🚇1hr30min', twd:275.1},
+                {time:'09:00', cat:'🏖️ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放', desc:'寄放行李 9:00-17:00', map:'https://maps.app.goo.gl/9Y8phKEYix9xD2rN6', twd:168},
                 {time:'09:10', cat:'🏖️ 景點', loc:'淺草寺 雷門', desc:'', map:'', twd:0},
                 {time:'10:05', cat:'🧁 吃喝', loc:'Ginza Brazil', desc:'(09:00–15:00)', map:'https://maps.app.goo.gl/W6KkrCGFHDS9BiYh9', twd:0},
                 {time:'10:10', cat:'🧁 吃喝', loc:'淺草花月堂菠蘿麵包', desc:'', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
                 {time:'10:15', cat:'🧁 吃喝', loc:'炸饅頭 / 人型餅', desc:'仲見世商店街', map:'https://maps.app.goo.gl/R5cXDP9FrmHijedW8', twd:0},
                 {time:'10:20', cat:'🧁 吃喝', loc:'仲見世商店街', map:'https://maps.app.goo.gl/dzqeQVb2H78oKb1f6', twd:0},
-                {time:'12:30', cat:'🧁 吃喝', loc:'淺草牛光', desc:'', map:'https://maps.app.goo.gl/ipKDeL4zoDTErGk77', twd:0},
+                {time:'11:00', cat:'🧁 吃喝', loc:'牛之檸檬', desc:'', map:'https://maps.app.goo.gl/GNEi7wYReJFehgod9', twd:0},
                 {time:'13:00', cat:'🚗 移動', loc:'前往上野', desc:'', map:'https://maps.app.goo.gl/LMvQHcenjE3DFLgz6', transit:'🚇15min', twd:0},
-                {time:'14:00', cat:'🧁 吃喝', loc:'阿美橫町', map:'https://maps.app.goo.gl/rL7w5i6vXrTtwjbK8', twd:0},
-                {time:'15:30', cat:'🚗 移動', loc:'取行李', desc:'', map:'https://maps.app.goo.gl/xwPmjibhohSEV3MB6', transit:'🚇17min', twd:0},
+                {time:'14:00', cat:'🧁 吃喝', loc:'阿美橫町', map:'https://maps.app.goo.gl/7GHy5fBcUp6tJFDt6', twd:0},
+                {time:'15:30', cat:'🚗 移動', loc:'取行李', desc:'', map:'https://maps.app.goo.gl/kTrLjZfbEnGY5gwf6', transit:'🚇17min', twd:0},
                 {time:'16:00', cat:'🏖️ 景點', loc:'7-Eleven 淺草新仲見世通店 行李寄放', desc:'', map:'', twd:0},
-                {time:'16:10', cat:'🚗 移動', loc:'拿行李🔜民宿', desc:'路線1走到淺草地鐵\n路線2搭淺草線', map:'https://maps.app.goo.gl/ZFLvvAyJ5TfvMqEQ7', transit:'🚇15min', twd:0},
+                {time:'16:10', cat:'🚗 移動', loc:'拿行李🔜民宿', desc:'路線1走到淺草地鐵\n路線2搭淺草線', map:'https://maps.app.goo.gl/EN8mMZ1PQeDywJgR8', transit:'🚇15min', twd:0},
                 {time:'16:35', cat:'🏠 住宿', loc:'淺草住宿5/22-5/24', map:'https://maps.app.goo.gl/1TCiSAEcxVZUD4fBA', twd:3300, embedType:'hotel_guide'},
                 {time:'18:00', cat:'🚗 移動', loc:'前往銀座', desc:'', map:'https://maps.app.goo.gl/A1Ztf9nJ4Y7zqwfb9', transit:'🚇34min', twd:0},
                 {time:'19:00', cat:'🧁 吃喝', loc:'銀座 篝', desc:'銀座 篝 大手町店 / 本店', map:'', twd:0},
-                {time:'20:00', cat:'🧁 吃喝', loc:'PATISSERIE TEN&', desc:'', map:'', twd:0}
+                {time:'20:00', cat:'🧁 吃喝', loc:'PATISSERIE TEN&', desc:'', map:'https://maps.app.goo.gl/CG6Wv4GHYYNS7U7U6', twd:0}
             ],
             2: [
                 {time:'10:00', cat:'🚗 移動', loc:'淺草🔜豪德寺', desc:'', map:'https://maps.app.goo.gl/5juqk4LY8LYABHQt8', transit:'🚇1hr30min', twd:0},
                 {time:'11:30', cat:'🏖️ 景點', loc:'豪德寺', desc:'11:30-12:30', map:'', twd:0},
-                {time:'13:00', cat:'🚗 移動', loc:'豪德寺→原宿', desc:'', map:'https://maps.app.goo.gl/uF4bt2EVw76amgJA6', transit:'🚇30min', twd:0},
-                {time:'13:05', cat:'🧁 吃喝', loc:'Negishi ねぎし原宿', desc:'牛舌餐廳 (13:00-14:00)', map:'https://maps.app.goo.gl/tZ9Xk2v55VDh6Z6U9', twd:0},
-                {time:'14:00', cat:'🏖️ 景點', loc:'吉伊卡哇麵包店', desc:'14:00-15:00', map:'https://maps.app.goo.gl/H5US5gVh522uM3fi8', twd:0},
-                {time:'15:30', cat:'🚗 移動', loc:'原宿→東京鐵塔', desc:'', map:'https://maps.app.goo.gl/y3YbfEaqopmBxAQ16', transit:'🚇30min', twd:0},
-                {time:'16:00', cat:'🏖️ 景點', loc:'東京鐵塔 711', map:'https://maps.app.goo.gl/jHQKJUjmwck1ocbq8', twd:0},
-                {time:'19:00', cat:'🏖️ 景點', loc:'寶可夢中心東京店DX', desc:'營業時間 10:30–21:00', map:'https://maps.app.goo.gl/MTPZ8nxkCaxQ65KV6', twd:0},
-                {time:'19:30', cat:'🏖️ 景點', loc:'逛藥妝唐吉訶德', desc:'', map:'https://maps.app.goo.gl/oZBR9Bf6vQMFhXzF7', twd:0}
+                {time:'13:00', cat:'🚗 移動', loc:'豪德寺→原宿', desc:'', map:'https://maps.app.goo.gl/f1gGdpdY4d9GTqUY8', transit:'🚇30min', twd:0},
+                {time:'14:00', cat:'🧁 吃喝', loc:'原宿吃午餐', desc:'(13:00-14:00)', map:'', twd:0},
+                {time:'15:30', cat:'🏖️ 景點', loc:'吉伊卡哇麵包店', desc:'15:30-16:00', map:'https://maps.app.goo.gl/H5US5gVh522uM3fi8', twd:0},
+                {time:'16:00', cat:'🚗 移動', loc:'原宿→東京鐵塔', desc:'', map:'https://maps.app.goo.gl/y3YbfEaqopmBxAQ16', transit:'🚇30min', twd:0},
+                {time:'17:30', cat:'🏖️ 景點', loc:'東京鐵塔 711', desc:'17:30-18:30', map:'https://maps.app.goo.gl/jHQKJUjmwck1ocbq8', twd:0},
+                {time:'18:45', cat:'🚗 移動', loc:'東京鐵塔→淺草牛光', desc:'18:45-19:15', map:'https://maps.app.goo.gl/zp94PGMQr1aTw5wU8', transit:'🚇30min', twd:0},
+                {time:'19:30', cat:'🧁 吃喝', loc:'淺草牛光', desc:'', map:'https://maps.app.goo.gl/ipKDeL4zoDTErGk77', twd:0}
             ],
             3: [
                 {time:'08:30', cat:'🚗 移動', loc:'退房🔜寄放行李', desc:'', map:'https://maps.app.goo.gl/bTjqDyxdj7Sak2EJ9', transit:'🚇45min', twd:0},
